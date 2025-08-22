@@ -1,0 +1,110 @@
+/* ===== Seção do formulário (duas colunas) ===== */
+.secao-rcs {
+    position: relative;
+    z-index: 1;
+}
+.texto-formulario {
+    font-size: 20px;
+    color: #ffffff;
+    font-weight: 500;
+}
+.texto-formulario-informativo {
+    margin-top: .25rem;
+    font-size: .875em;
+    color: var(--bs-secondary-color);
+}
+
+/* Cartão com “vidro” sutil para combinar com seu fundo azul */
+.cartao-vidro {
+    background: rgba(255, 255, 255, .12);
+    border: 1px solid rgba(255, 255, 255, .24);
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12);
+    color: #fff;
+}
+
+/* Campos do formulário: claros para leitura */
+.form-control,
+.form-select {
+    background: rgba(255, 255, 255, .95);
+    border-color: rgba(15, 23, 42, .15);
+    color: #0f172a;
+}
+
+.form-control::placeholder {
+    color: #6b7280;
+}
+
+.form-text {
+    color: #eaf6ff;
+    opacity: .9;
+}
+
+.texto-apoio {
+    color: #eaf6ff;
+}
+
+/* Links claros sobre o cartão */
+.link-claro {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Pré-visualização (placeholder) */
+.placeholder-celular {
+    min-height: 340px;
+    border-radius: 12px;
+    background:
+        radial-gradient(60% 80% at 70% 10%, rgba(255, 255, 255, .12), transparent 60%),
+        rgba(255, 255, 255, .06);
+    color: #eaf6ff;
+    text-align: center;
+}
+
+/* Coluna da prévia fica “grudada” no topo no desktop */
+.col-previsao {
+    position: sticky;
+    top: 80px;
+}
+
+.linha-flex{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.botao-flexbox{
+   color: #fff !important;
+    background: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+    margin-right: auto;
+    font-weight: 800;
+    font-size: 15px;
+    border: 1px solid #0000008c !important;
+}
+.botao-flexbox:hover{
+    color: #000 !important;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.219);
+}
+/* ===== Responsivo ===== */
+@media (max-width: 992px) {
+
+    /* breakpoint do Bootstrap lg */
+    .col-previsao {
+        position: static;
+    }
+
+    /* tira o sticky no tablet/mobile */
+}
+
+@media (max-width: 640px) {
+    .botao {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .cartao-vidro {
+        padding: 16px;
+    }
+}

@@ -1,0 +1,801 @@
+/* ======================= COLUNA DIREITA (sticky) ======================= */
+.col-previsao {
+    position: sticky;
+    top: 80px;
+}
+
+/* ======================= CONTROLES (Android/iOS e Claro/Escuro) ======================= */
+.controle-os {
+    display: flex;
+    gap: 6px;
+    background: rgba(255, 255, 255, .15);
+    padding: 6px;
+    border-radius: 999px;
+}
+
+.controle-os input {
+    display: none;
+}
+
+.controle-os label {
+    color: #fff;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.controle-os input:checked+label {
+    background: #0a84ff;
+    color: #fff;
+}
+
+.controle-tema {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.switch {
+    position: relative;
+    width: 48px;
+    height: 26px;
+    display: inline-block;
+}
+
+.switch input {
+    display: none;
+}
+
+.alavanca {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, .25);
+    border-radius: 999px;
+}
+
+.alavanca::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform .2s ease;
+}
+
+.switch input:checked+.alavanca {
+    background: #0a84ff;
+}
+
+.switch input:checked+.alavanca::after {
+    transform: translateX(22px);
+}
+
+/* ======================= APARELHO (responsivo com aspect-ratio) ======================= */
+.telefone-sim {
+    width: min(100%, 360px);
+    aspect-ratio: 360/740;
+    margin-inline: auto;
+    perspective: 1200px;
+    position: relative;
+    display: grid;
+    place-items: center;
+}
+
+/* sombra elíptica de “mesa” */
+.telefone-sim::after {
+    content: "";
+    position: absolute;
+    left: 15%;
+    right: 15%;
+    bottom: -18px;
+    height: 28px;
+    z-index: 0;
+    background: radial-gradient(60% 100% at 50% 0%, rgba(0, 0, 0, .35), rgba(0, 0, 0, 0) 70%);
+    filter: blur(6px);
+}
+
+.telefone-sim .moldura{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: hidden; /* era visible */
+  background: #0a0f15; /* sólido, sem highlight no topo */
+  box-shadow: 0 30px 60px rgba(2, 6, 23, .45); /* removido o inset */
+  transform-origin: center;
+  transition: transform .45s cubic-bezier(.2,.9,.2,1), opacity .35s;
+}
+
+/* aro metálico (ring) */
+.telefone-sim .moldura::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 6px;
+    pointer-events: none;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .22), rgba(0, 0, 0, .50));
+}
+
+/* brilho de vidro no aro (filete superior) */
+.telefone-sim .moldura::after {
+    content: "";
+    position: absolute;
+    inset: 1px 1px auto 1px;
+    height: 10px;
+    border-radius: 26px 26px 0 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .35), rgba(255, 255, 255, 0));
+    mix-blend-mode: screen;
+    pointer-events: none;
+}
+
+/* OUVIDO/BOTÕES LATERAIS */
+.earpiece {
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 62px;
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #0a0a0a, #1c1c1c);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .05);
+    z-index: 6;
+}
+
+.side-button {
+    position: absolute;
+    width: 4px;
+    border-radius: 3px;
+    z-index: 6;
+    background: linear-gradient(90deg, #0a0d12, #2b3440 50%, #0a0d12);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+}
+
+.side-vol1 {
+    left: -3px;
+    top: 170px;
+    height: 44px;
+}
+
+.side-vol2 {
+    left: -3px;
+    top: 220px;
+    height: 30px;
+}
+
+.side-power {
+    right: -4px;
+    top: 190px;
+    height: 56px;
+}
+
+/* NOTCH/ALTO-FALANTE ANDROID com câmera */
+.notch-android {
+  position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 55px;
+    height: 5px;
+    border-radius: 999px;
+    z-index: 8;
+    background: linear-gradient(180deg, rgb(0 0 0 / 98%), rgba(7, 10, 14, .6));
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .18);
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+}
+
+.notch-android .cam {
+    margin-top: 26px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: 22px;
+    background:
+        radial-gradient(circle at 35% 35%, #5cc7ff 0 25%, transparent 26 100%),
+        radial-gradient(circle at 50% 50%, #0a0f14 0 55%, #05080c 56 100%);
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 54%), inset 0 0 6px rgba(0, 0, 0, .6);
+}
+
+/* ======================= TELA ======================= */
+.tela {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: 12px;
+    bottom: 12px;
+    border-radius: 20px;
+    overflow: hidden;
+    color: #eaf6ff;
+    background: #121418;
+    border: 1px solid rgba(255, 255, 255, .06);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02), inset 0 10px 30px rgba(0, 0, 0, .35);
+    display: flex;
+    flex-direction: column;
+}
+
+.telefone-sim[data-tema="claro"] .tela {
+    background: #f8fbff;
+    color: #0f172a;
+    border-color: rgba(15, 23, 42, .1);
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .02), inset 0 10px 30px rgba(0, 0, 0, .06);
+}
+
+/* STATUS BAR */
+.status-bar {
+    position: absolute;
+    left: 22px;
+    right: 20px;
+    top: 15px;
+    height: 22px;
+    z-index: 7;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 15px;
+    color: rgba(226, 232, 240, .95);
+}
+
+.telefone-sim[data-tema="claro"] .status-bar {
+    color: #0f172a;
+}
+
+.status-bar .lado-esq,
+.status-bar .lado-dir {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.status-bar .lado-centro {
+    display: none;
+}
+
+.status-bar .ico {
+    width: 22px;
+    height: 22px;
+    color: currentColor;
+}
+
+.status-bar .bateria {
+    width: 30px;
+}
+
+.status-bar .nivel {
+    opacity: .9;
+}
+
+
+
+/* ======================= DIFERENÇAS iOS ======================= */
+.notch-ios {
+    display: none;
+}
+
+.telefone-sim[data-os="ios"] .notch-ios {
+    display: block;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 112px;
+    height: 28px;
+    border-radius: 999px;
+    background: #0b0f14;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .15);
+    z-index: 9;
+}
+
+.telefone-sim[data-os="ios"] .earpiece,
+.telefone-sim[data-os="ios"] .side-button,
+.telefone-sim[data-os="ios"] .notch-android {
+    display: none;
+}
+
+.telefone-sim[data-os="ios"] .moldura {
+    border-radius: 34px;
+}
+
+.telefone-sim[data-os="ios"] .tela {
+    border-radius: 26px;
+}
+
+.telefone-sim[data-os="ios"] .status-bar .lado-esq {
+    visibility: hidden;
+}
+
+.telefone-sim[data-os="ios"] .status-bar .lado-centro {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+}
+
+.telefone-sim[data-os="ios"] .operadora {
+    display: none;
+}
+
+
+
+/* ======================= CONTEÚDO (perfil) ======================= */
+/* Banner (Android). No iOS ele some; usamos hero. */
+.banner {
+    position: relative;
+    height: 210px;
+    margin: 0;
+    background: linear-gradient(135deg, #e7f2ff, #ffffff);
+}
+
+.telefone-sim[data-tema="escuro"] .banner {
+    background: linear-gradient(135deg, #0b1220, #07101a);
+}
+
+.banner-img {
+    margin-top: 30px;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.banner-img[hidden] {
+    display: none;
+}
+
+.banner-fake {
+    background: #e7e7e7; /* claro */
+    margin-top: 80px;
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 7px;
+    color: #000000cc;
+    font-weight: 800;
+}
+
+/* quando tema for escuro */
+.telefone-sim[data-tema="escuro"] .banner-fake {
+    background: #1e293b;       /* fundo escuro */
+    color: #ffffffcc;          /* texto branco */
+}
+
+
+/* container do texto estático no topo do banner */
+.banner { position: relative; }
+
+.banner-toptext{
+  position: absolute;
+  top: 29px;             /* fica naquela faixa superior do banner */
+  left: 3px;
+  right: 15px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none; /* é ESTÁTICO, sem clique */
+  z-index: 2;           /* acima do fundo do banner */
+  background: transparent;
+}
+
+.banner-toptext .ico-seta{
+  width: 25px;
+  height: 25px;
+  flex: 0 0 auto;
+  color: currentColor;
+}
+
+.banner-toptext .titulo{
+  font-size: 20px;
+  font-weight: 100;
+  letter-spacing: .2px;
+  line-height: 1;
+  color: inherit;
+}
+
+/* cores por tema: só o TEXTO muda, fundo continua o do banner */
+.telefone-sim[data-tema="claro"] .banner-toptext{
+  color: #0f172a;     /* texto escuro no banner claro */
+}
+.telefone-sim[data-tema="escuro"] .banner-toptext{
+  color: #ffffff;     /* texto branco no banner escuro */
+}
+
+.banner .avatar {
+    margin-top: 50px;
+    /* empurra só o avatar */
+}
+
+
+.telefone-sim .avatar {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -46px;
+    width: 90px;
+    height: 90px;
+    border-radius: 999px;
+    border: 3px solid rgba(255, 255, 255, .9);
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(2, 6, 23, .25);
+    background: #111;
+    z-index: 2;
+}
+
+.telefone-sim[data-tema="claro"] .avatar {
+    border-color: #fff;
+}
+
+.telefone-sim[data-tema="escuro"] .avatar {
+    border-color: rgba(255, 255, 255, .9);
+}
+
+.avatar[hidden] {
+    display: none;
+}
+
+/* (opcional) reduzir um pouco em telas bem estreitas */
+@media (max-width: 380px) {
+    .telefone-sim .avatar {
+        width: 80px;
+        height: 80px;
+        bottom: -40px;
+    }
+}
+
+/* Hero iOS (sem banner) */
+.ios-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 18px 10px;
+}
+
+.telefone-sim[data-os="android"] .ios-hero {
+    display: none;
+}
+
+.telefone-sim[data-os="ios"] .banner {
+    display: none;
+}
+
+.ios-logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 22px;
+    object-fit: cover;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .35);
+}
+
+.ios-logo[hidden] {
+    display: none;
+}
+
+/* Cabeçalho + descrição */
+.cabeca {
+    padding: 52px 18px 10px;
+}
+
+.cabeca h4 {
+    text-align: center;
+    margin: 0 0 6px;
+    font-size: 1.06rem;
+}
+
+.cabeca p {
+    margin: 0;
+    font-size: .8rem;
+    opacity: .95;
+    text-align: center;
+}
+
+.cabeca[hidden] {
+    display: none !important;
+}
+
+/* Ações rápidas */
+.acoes-icones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 70px;
+  padding: 8px 18px 4px;
+}
+
+
+.acao {
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;       
+  white-space: nowrap;
+}
+
+.acao .ico-ac {
+  width: 22px;
+  height: 22px;
+  color: currentColor;      
+}
+
+.acao span {
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Tema CLARO (opcional: azul padrão) */
+.telefone-sim[data-tema="claro"] .acoes-icones .acao {
+  color: #0e0e0e;          
+}
+
+/* Tema ESCURO — “aquela cor” do style */
+.telefone-sim[data-tema="escuro"] .acoes-icones .acao {
+  color: #60a5fa;           /* azul bom pra fundo escuro */
+}
+
+/* feedback */
+.acao:hover { opacity: 1; transform: translateY(-1px); }
+
+
+/* Abas */
+/* container */
+.abas{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  text-align: center;
+  padding:10px 18px 6px;
+  font-weight:700;
+}
+
+/* abas */
+.aba{
+  position:relative;
+  display:inline-block;     /* garante área p/ o ::after */
+  line-height:1.1;
+  opacity:.65;
+  text-decoration:none;     /* previne sublinhado nativo */
+}
+
+.aba.ativa{ opacity:1; }
+
+/* linha base da ativa */
+.aba.ativa::after{
+  content:"";
+  position:absolute;
+  bottom:-6px;
+  height:2px;
+  background:currentColor;
+  border-radius:2px;
+  opacity:.95;
+}
+
+/* quando a ativa for a da ESQUERDA (Informações): linha p/ a esquerda */
+.aba-infos.ativa::after{
+  left:0;
+  width:140px;              /* ajuste fino se quiser */
+}
+
+/* quando a ativa for a da DIREITA (Opções): linha encostada à direita */
+.aba-opcoes.ativa::after{
+  right:0;
+  width:120px;              /* ajuste fino p/ ficar igual ao print */
+}
+
+/* cores por tema */
+.telefone-sim[data-tema="claro"] .abas .aba{ color:#0f172a; }
+.telefone-sim[data-tema="escuro"] .abas .aba{ color:#e2e8f0; }
+
+/* responsivo opcional */
+@media (max-width:360px){
+  .aba-infos.ativa::after{ width:110px; }
+  .aba-opcoes.ativa::after{ width:95px; }
+}
+
+
+/* responsivo: encurta a linha em telas bem estreitas */
+@media (max-width: 360px){
+  .aba.ativa::after{ width:110px; }
+}
+
+
+/* Lista de informações */
+.lista-info {
+    list-style: none;
+    margin: 0;
+    padding: 2px 0 12px;
+}
+
+.lista-info li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 18px;
+}
+
+.lista-info li svg {
+    width: 18px;
+    height: 18px;
+    opacity: .95;
+}
+
+.lista-info li div small {
+    display: block;
+    opacity: .7;
+    font-size: .78rem;
+    margin-top: 2px;
+}
+
+.lista-info li[hidden] {
+    display: none !important;
+}
+
+
+
+/* painéis alternáveis */
+.painel {}
+
+.painel[hidden] {
+    display: none !important;
+}
+
+/* bloco “Opções” no estilo Android */
+.op-titulo {
+    padding: 10px 18px 8px;
+    font-weight: 700;
+    opacity: .95;
+}
+
+.op-legenda {
+    padding: 6px 18px;
+    font-size: .75rem;
+    opacity: .6;
+}
+
+.op-lista {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.op-item {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, .09);
+}
+
+.telefone-sim[data-tema="claro"] .op-item {
+    border-color: rgba(15, 23, 42, .12);
+}
+
+/* esconde opções que não tiverem URL */
+.opt-politica[hidden],
+.opt-termos[hidden] {
+    display: none !important;
+}
+
+
+/* ========= Barra de navegação Android ========= */
+
+/* só aparece no Android */
+.telefone-sim[data-os="ios"] .nav-android {
+    display: none;
+}
+
+/* dá espaço no fundo quando a barra existir */
+.telefone-sim[data-os="android"] .tela {
+    padding-bottom: 56px; /* altura da barra + folga */
+}
+
+/* container da barra */
+.nav-android {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    background: #ffffff; /* fallback */
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    z-index: 20;
+    user-select: none;
+    pointer-events: none; /* só visual */
+}
+
+/* --------- MODO CLARO --------- */
+.telefone-sim[data-tema="claro"] .nav-android {
+    background: transparent;
+    border-top-color: rgba(15, 23, 42, .18);
+}
+
+.telefone-sim[data-tema="claro"] .nav-android .nav-btn {
+    color: #656566;  /* cinza escuro */
+    opacity: .9;
+}
+
+/* --------- MODO ESCURO --------- */
+.telefone-sim[data-tema="escuro"] .nav-android {
+    background: transparent;
+    border-top-color: rgba(226, 232, 240, .18);
+}
+
+.telefone-sim[data-tema="escuro"] .nav-android .nav-btn {
+    color: #aebbd1; /* cinza claro */
+    opacity: .9;
+}
+
+/* botões */
+.nav-android .nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 100%;
+}
+
+/* ícones */
+.nav-android svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* home (anel) */
+.nav-android .home-circ {
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 2px currentColor;
+    display: inline-block;
+}
+
+/* recentes (três barras verticais) */
+.nav-android .recentes .barra {
+    display: inline-block;
+    width: 3px;
+    height: 18px;
+    border-radius: 2px;
+    background: currentColor;
+    margin: 0 2px;
+}
+
+/* leve realce em hover (só visual; pointer-events continua off) */
+.nav-android .nav-btn:hover {
+    opacity: 1;
+}
+
+
+
+/* ======================= RESPONSIVO ======================= */
+@media (max-width:992px) {
+    .col-previsao {
+        position: static;
+    }
+}
+
+@media (max-width:380px) {
+    .telefone-sim {
+        width: 100%;
+    }
+}
