@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <title>Mockup Perfil — iOS / Android (Dark & Light)</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    /* ========== Reset & base ========== */
+    :root{
+      --bg: #eef2f7;
+      --panel: #fff;
+      --muted: #6b7280;
+      --accent-ios: #007aff;
+      --accent-android: #34c759;
+      --frame-dark: #0b0f12;
+      --frame-light: #111827;
+      --phone-width: 360px;
+      --phone-height: 760px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg,#e6eefb 0%, #f8fafc 50%);
+      transition: background .35s ease;
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+    body.dark{
+      background: linear-gradient(180deg,#071024 0%, #071014 50%);
+      color:#e6eefb;
+    }
+
+    /* ========== Controls ========== */
+    .controls{
+      position:fixed; top:18px; left:18px; display:flex; gap:8px; z-index:80;
+    }
+    .controls button{
+      border:0; padding:8px 12px; border-radius:10px; cursor:pointer; font-weight:600;
+      background:rgba(0,0,0,0.06); color: inherit; transition: transform .12s ease, background .15s;
+      backdrop-filter: blur(6px);
+    }
+    .controls button:active{ transform: translateY(1px) }
+    .controls .primary{ background:linear-gradient(90deg,#111827,#0b1220); color:#fff }
+    body.dark .controls .primary{ background:linear-gradient(90deg,#0b1220,#0f172a); }
+
+    /* ========== Stage for phones ========== */
+    .stage{
+      width:calc(var(--phone-width) + 120px);
+      display:flex; gap:40px; align-items:center; justify-content:center; padding:32px;
+    }
+
+    /* ========== Phone common ========== */
+    .phone-wrap{
+      width:var(--phone-width);
+      height:var(--phone-height);
+      position:relative;
+      perspective:1200px;
+    }
+    .phone{
+      width:100%; height:100%;
+      border-radius:28px;
+      position:relative; overflow:visible;
+      transform-origin:center;
+      transition: transform .45s cubic-bezier(.2,.9,.2,1), opacity .35s;
+      will-change: transform, opacity;
+      /* frame border (editable color) */
+    }
+
+    /* real frame - metal rim */
+    .frame{
+      position:absolute; inset:0; pointer-events:none;
+      border-radius:inherit;
+      padding:6px;
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor; mask-composite: exclude;
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.25));
+      box-shadow: 0 30px 60px rgba(2,6,23,0.45);
+    }
+
+    /* earpiece, side buttons */
+    .earpiece{
+      position:absolute; top:14px; left:50%; transform:translateX(-50%); width:62px; height:8px;
+      border-radius:6px; background: linear-gradient(180deg,#111 0%, #222 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+      z-index:6;
+    }
+    .side-button{ position:absolute; width:4px; background: rgba(0,0,0,0.35); border-radius:3px; }
+    .side-vol1{ left:-6px; top:170px; height:44px }
+    .side-vol2{ left:-6px; top:220px; height:30px }
+    .side-power{ right:-6px; top:190px; height:56px; }
+
+    /* screen area */
+    .screen{
+      position:absolute; inset:12px; border-radius:20px; overflow:hidden; background:var(--panel);
+      display:flex; flex-direction:column;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+    }
+    body.dark .screen{ background:#07090a }
+
+    /* notch / punch hole */
+    .cutout{ position:absolute; left:50%; transform:translateX(-50%); z-index:10 }
+    .cutout.island{ top:12px; width:112px; height:28px; border-radius:999px; background:var(--panel); box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+    .cutout.punch{ top:12px; width:14px; height:14px; border-radius:50%; background:var(--panel); box-shadow: 0 1px 4px rgba(0,0,0,0.12) }
+
+    /* ========== Status (within screen) ========== */
+    .status{
+      display:flex; align-items:center; justify-content:space-between; padding:10px 14px;
+      font-weight:600; font-size:13px; color:var(--muted);
+    }
+    body.dark .status{ color:#cbd5e1 }
+
+    .status .left{ display:flex; gap:10px; align-items:center; }
+    .status .center{ font-weight:700; }
+    .status .right{ display:flex; gap:10px; align-items:center; }
+
+    /* small icon wrappers */
+    .icon-s { width:22px; height:14px; display:inline-flex; align-items:center; justify-content:center }
+    .icon-l { width:28px; height:18px; display:inline-flex; align-items:center; justify-content:center }
+
+    /* ========== Profile content (editable) ========== */
+    .profile{
+      display:flex; gap:12px; padding:12px 18px; align-items:flex-start; flex-direction:column;
+      flex:1; overflow:auto;
+    }
+
+    /* header cover */
+    .cover{
+      height:140px; border-radius:12px; overflow:hidden; background:linear-gradient(135deg,#dbeafe,#fff);
+      display:flex; align-items:end; justify-content:flex-start; padding:12px;
+    }
+    body.dark .cover{ background:linear-gradient(135deg,#0b1220,#07101a) }
+
+    .avatar{
+      width:92px; height:92px; border-radius:18px; margin-top:-36px; margin-left:18px;
+      border:6px solid rgba(255,255,255,0.9); box-shadow: 0 8px 20px rgba(2,6,23,0.25);
+      background-size:cover; background-position:center;
+    }
+    body.dark .avatar{ border-color: rgba(0,0,0,0.45) }
+
+    .meta{
+      padding:0 18px 8px; display:flex; flex-direction:column; gap:6px;
+    }
+    .title-row{ display:flex; gap:10px; align-items:center }
+    .name{ font-size:20px; font-weight:700 }
+    .verified{ width:18px; height:18px; display:inline-grid; place-items:center; border-radius:4px;
+      background:linear-gradient(90deg,#34c759,#10b981); color:#fff; font-size:12px; font-weight:800;
+      box-shadow: 0 2px 6px rgba(16,185,129,0.15);
+    }
+    .subtitle{ color:var(--muted); font-size:13px }
+
+    .about{ margin-top:6px; color:var(--muted); line-height:1.45; font-size:13px }
+    body.dark .about{ color:#cbd5e1 }
+
+    .info-list{ margin-top:12px; display:flex; flex-direction:column; gap:8px; font-size:14px }
+    .info-item{ display:flex; gap:10px; align-items:center }
+    .info-item .label{ color:var(--muted); min-width:80px; font-size:13px }
+    body.dark .info-item .label{ color:#9ca3af }
+
+    /* Android nav (bottom) */
+    .android-nav{
+      height:56px; display:flex; align-items:center; justify-content:center; gap:26px; padding-bottom:8px;
+      background: linear-gradient(180deg, rgba(0,0,0,0.02), transparent);
+    }
+    .android-nav svg{ width:34px; height:34px; opacity:.92 }
+
+    /* iOS gesture bar bottom */
+    .ios-home{ height:22px; display:flex; align-items:center; justify-content:center; margin-bottom:8px }
+    .ios-home .bar{ width:120px; height:6px; border-radius:99px; background:rgba(0,0,0,0.08) }
+
+    /* ========== OS specific tweaks ========== */
+    .phone.ios{ border-radius:34px }
+    .phone.android{ border-radius:18px }
+
+    /* Android slightly squarer frame */
+    .phone.android .frame{ border-radius:18px }
+
+    /* Cover styles per OS/theme */
+    .phone.ios .cover{ background: linear-gradient(135deg,#ebf5ff,#fff) }
+    body.dark .phone.ios .cover{ background: linear-gradient(135deg,#051427,#071021) }
+    .phone.android .cover{ background: linear-gradient(135deg,#ecfdf5,#fff) }
+    body.dark .phone.android .cover{ background: linear-gradient(135deg,#071014,#071014) }
+
+    /* accent color for action buttons */
+    .accent-ios{ color:var(--accent-ios) }
+    .accent-android{ color:var(--accent-android) }
+
+    /* ========== transitions between OS ========== */
+    .phones-container{ position:relative; width:var(--phone-width); height:var(--phone-height) }
+    .phone-stack{ position:absolute; inset:0; transition: opacity .45s ease, transform .45s cubic-bezier(.2,.9,.2,1) }
+    .phone-stack.inactive{ opacity:0; transform: translateY(18px) scale(.98) rotateX(6deg) ; pointer-events:none }
+    .phone-stack.active{ opacity:1; transform: translateY(0) scale(1) rotateX(0deg); pointer-events:auto }
+
+    /* small responsive */
+    @media (max-width:900px){
+      .stage{ gap:18px; padding:18px }
+      .controls{ left:10px; top:10px }
+    }
+  </style>
+</head>
+<body>
+  <!-- controls -->
+  <div class="controls" aria-hidden="false">
+    <button id="toggle-os" title="Alternar iOS / Android">iOS ↔ Android</button>
+    <button id="toggle-theme" title="Alternar Claro / Escuro">Modo Claro/Escuro</button>
+    <button id="edit-sample" title="Editar dados no console">Editar (console)</button>
+  </div>
+
+  <div class="stage">
+    <!-- single width stage: we'll stack two phones and animate opacity/translate -->
+    <div class="phone-wrap" id="stage-wrap">
+      <!-- iOS phone (top of stack by default) -->
+      <div class="phone-stack active" id="stack-ios" aria-hidden="false">
+        <div class="phone ios" id="phone-ios" role="img" aria-label="iPhone mockup">
+          <div class="frame"></div>
+          <div class="earpiece"></div>
+          <div class="side-button side-vol1"></div>
+          <div class="side-button side-vol2"></div>
+          <div class="side-button side-power"></div>
+
+          <div class="screen" id="screen-ios">
+            <div class="cutout island" id="cutout-ios"></div>
+            <div class="status" id="status-ios">
+              <div class="left"><svg class="icon-s" viewBox="0 0 24 24" fill="none"><path d="M4 17h2v-4H4v4zM8 13h2v4H8v-4zM12 9h2v8h-2V9zM16 5h2v12h-2V5z" fill="currentColor"/></svg></div>
+              <div class="center" id="time-ios">--:--</div>
+              <div class="right">
+                <!-- wifi -->
+                <svg class="icon-s" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm-6.9-3.1a10 10 0 0 1 13.8 0l1.4-1.4a12 12 0 0 0-16.6 0l1.4 1.4z" fill="currentColor"/>
+                </svg>
+                <!-- battery -->
+                <svg id="battery-ios" class="icon-l" viewBox="0 0 24 24" fill="none">
+                  <rect x="2" y="7" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"></rect>
+                  <rect x="19.2" y="10" width="1.6" height="4" rx="0.4" fill="currentColor"></rect>
+                  <rect id="battery-fill-ios" x="3.6" y="8.6" width="9" height="6.8" rx="1" fill="currentColor"></rect>
+                </svg>
+              </div>
+            </div>
+
+            <!-- profile header / cover -->
+            <div class="cover" id="cover-ios" style="">
+              <!-- cover image is background via JS -->
+            </div>
+
+            <div class="profile">
+              <div class="avatar" id="avatar-ios" style="background-image:url('');"></div>
+
+              <div class="meta">
+                <div class="title-row">
+                  <div class="name" id="name-ios">Nome</div>
+                  <div class="verified" id="verified-ios" title="Verificado">✓</div>
+                </div>
+                <div class="subtitle" id="subtitle-ios">Subtítulo / verificado</div>
+                <div class="about" id="about-ios">Breve descrição do perfil — área editável.</div>
+
+                <div class="info-list" id="info-ios">
+                  <div class="info-item"><div class="label">Site</div><div class="value"><a id="site-ios" href="#" target="_blank">example.com</a></div></div>
+                  <div class="info-item"><div class="label">Telefone</div><div class="value" id="phone-ios-val">+55 (00) 0000-0000</div></div>
+                  <div class="info-item"><div class="label">E-mail</div><div class="value" id="email-ios-val">email@ex.com</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ios-home" aria-hidden="true"><div class="bar"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Android phone (below in stack) -->
+      <div class="phone-stack inactive" id="stack-android" aria-hidden="true">
+        <div class="phone android" id="phone-android" role="img" aria-label="Android mockup">
+          <div class="frame"></div>
+          <div class="earpiece" style="width:44px;height:6px; top:14px; background:linear-gradient(180deg,#0b1220,#111)"></div>
+          <div class="side-button side-vol1"></div>
+          <div class="side-button side-vol2"></div>
+          <div class="side-button side-power"></div>
+
+          <div class="screen" id="screen-android">
+            <div class="cutout punch" id="cutout-android"></div>
+            <div class="status" id="status-android">
+              <div class="left"><div id="time-android">--:--</div></div>
+              <div class="center"></div>
+              <div class="right">
+                <svg class="icon-s" viewBox="0 0 24 24" fill="none"><path d="M4 17h2v-4H4v4zM8 13h2v4H8v-4zM12 9h2v8h-2V9zM16 5h2v12h-2V5z" fill="currentColor"/></svg>
+                <svg class="icon-s" viewBox="0 0 24 24" fill="none"><path d="M12 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM4 11a16 16 0 0 1 24 0" fill="currentColor"/></svg>
+                <svg id="battery-android" class="icon-l" viewBox="0 0 24 24" fill="none">
+                  <rect x="2" y="7" width="16" height="10" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"></rect>
+                  <rect x="19.2" y="10" width="1.6" height="4" rx="0.4" fill="currentColor"></rect>
+                  <rect id="battery-fill-android" x="3.6" y="8.6" width="9" height="6.8" rx="1" fill="currentColor"></rect>
+                </svg>
+              </div>
+            </div>
+
+            <div class="cover" id="cover-android"></div>
+
+            <div class="profile">
+              <div class="avatar" id="avatar-android" style="background-image:url('');"></div>
+
+              <div class="meta">
+                <div class="title-row">
+                  <div class="name" id="name-android">Nome</div>
+                  <div class="verified" id="verified-android" title="Verificado">✓</div>
+                </div>
+                <div class="subtitle" id="subtitle-android">Subtitulo/Operadora</div>
+                <div class="about" id="about-android">Descrição do perfil — edite no bloco PROFILE_DATA abaixo.</div>
+
+                <div class="info-list" id="info-android">
+                  <div class="info-item"><div class="label">Site</div><div class="value"><a id="site-android" href="#" target="_blank">example.com</a></div></div>
+                  <div class="info-item"><div class="label">Telefone</div><div class="value" id="phone-android-val">+55 (00) 0000-0000</div></div>
+                  <div class="info-item"><div class="label">E-mail</div><div class="value" id="email-android-val">email@ex.com</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="android-nav" aria-hidden="false">
+              <!-- Back / Home / Recent in SVG -->
+              <svg viewBox="0 0 24 24" fill="none" style="width:30px;height:30px"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" style="width:30px;height:30px"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" style="width:30px;height:30px"><rect x="6" y="6" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.8"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /**************************************************************************
+     * PROFILE_DATA: altere aqui as imagens/textos/links facilmente
+     * Substitua avatar and cover por caminhos locais (ex: './img/me.jpg') ou URLs
+     **************************************************************************/
+    const PROFILE_DATA = {
+      name: "Short Code",
+      verified: true,
+      subtitle: "Operadora verificada",
+      about: "Plataforma de envio e gestão de SMS e RCS. Integração via API, relatórios e suporte.",
+      site: "https://shortcode.com.br",
+      phone: "+55 (47) 3285-8808",
+      email: "sms@shortcode.com.br",
+      // imagens: troque pelos caminhos desejados
+      avatar: "https://via.placeholder.com/300x300.png?text=Logo", // substitua
+      cover_ios: "linear-gradient(135deg,#dbeafe,#fff)", // pode ser URL: "url('...')"
+      cover_android: "linear-gradient(135deg,#ecfdf5,#fff)",
+    };
+
+    /* ----------------- Utilities ----------------- */
+    const $ = sel => document.querySelector(sel);
+    const setText = (sel, text) => { const el = $(sel); if(el) el.textContent = text; };
+    const setHTML = (sel, html) => { const el = $(sel); if(el) el.innerHTML = html; };
+    const setAttr = (sel, attr, val) => { const el = $(sel); if(el) el && el.setAttribute(attr, val); };
+
+    /* ----------------- Elements ----------------- */
+    const stackIOS = $('#stack-ios');
+    const stackAndroid = $('#stack-android');
+    const toggleOSBtn = $('#toggle-os');
+    const toggleThemeBtn = $('#toggle-theme');
+    const editBtn = $('#edit-sample');
+
+    const body = document.body;
+
+    /* ----------------- initial state ----------------- */
+    let currentOS = 'ios'; // 'ios' | 'android'
+    let theme = 'light';   // 'light' | 'dark'
+
+    /* ----------------- render profile content ----------------- */
+    function renderProfile(){
+      // iOS
+      setText('#name-ios', PROFILE_DATA.name);
+      setText('#subtitle-ios', PROFILE_DATA.subtitle);
+      setText('#about-ios', PROFILE_DATA.about);
+      setText('#site-ios', PROFILE_DATA.site);
+      setAttr('#site-ios', 'href', PROFILE_DATA.site);
+      setText('#phone-ios-val', PROFILE_DATA.phone);
+      setText('#email-ios-val', PROFILE_DATA.email);
+      $('#avatar-ios').style.backgroundImage = `url('${PROFILE_DATA.avatar}')`;
+      $('#cover-ios').style.background = PROFILE_DATA.cover_ios;
+      $('#verified-ios').style.display = PROFILE_DATA.verified ? 'inline-flex' : 'none';
+
+      // Android
+      setText('#name-android', PROFILE_DATA.name);
+      setText('#subtitle-android', PROFILE_DATA.subtitle);
+      setText('#about-android', PROFILE_DATA.about);
+      setText('#site-android', PROFILE_DATA.site);
+      setAttr('#site-android', 'href', PROFILE_DATA.site);
+      setText('#phone-android-val', PROFILE_DATA.phone);
+      setText('#email-android-val', PROFILE_DATA.email);
+      $('#avatar-android').style.backgroundImage = `url('${PROFILE_DATA.avatar}')`;
+      $('#cover-android').style.background = PROFILE_DATA.cover_android;
+      $('#verified-android').style.display = PROFILE_DATA.verified ? 'inline-flex' : 'none';
+    }
+
+    /* ----------------- time + battery status ----------------- */
+    function pad(n){ return (n+"").padStart(2,"0"); }
+    function updateClock(){
+      const d = new Date();
+      const t = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      const t2 = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+      setText('#time-ios', t);
+      setText('#time-android', t2);
+      setText('#time-android', t2);
+      // also left slot on android
+      const timeAndroidLeft = document.getElementById('time-android');
+      if(timeAndroidLeft) timeAndroidLeft.textContent = t2;
+    }
+    updateClock();
+    setInterval(updateClock, 60*1000);
+
+    // Battery API with fallback simulated
+    function setBatteryFill(elemId, pct){
+      const el = document.getElementById(elemId);
+      if(!el) return;
+      // clamp
+      pct = Math.max(0, Math.min(1, pct));
+      // battery rectangles were defined with width approx 9 units on SVG viewBox - we will compute transform
+      // simpler: change the 'width' attr of inner rects with JS
+      const fill = document.getElementById(elemId === 'battery-ios' ? 'battery-fill-ios' : 'battery-fill-android');
+      if(fill) {
+        // battery total crude width calculation: viewBox width 24, inner fill x=3.6 width=9 (example)
+        // we'll set width as percent of 9 and adjust x to 3.6
+        const totalWidth = 9; // px reference
+        const newW = Math.round(totalWidth * pct * 10)/10;
+        fill.setAttribute('width', newW);
+      }
+      // color
+      if(pct < 0.18) {
+        el.style.color = '#f43f5e'; // red-ish
+      } else if(pct < 0.45) {
+        el.style.color = '#f59e0b'; // amber
+      } else {
+        el.style.color = ''; // default (inherit)
+      }
+    }
+    // try Battery API
+    if(navigator.getBattery){
+      navigator.getBattery().then(b => {
+        setBatteryFill('battery-ios', b.level);
+        setBatteryFill('battery-android', b.level);
+        b.addEventListener('levelchange', ()=> setBatteryFill('battery-ios', b.level));
+      }).catch(()=> {
+        setBatteryFill('battery-ios', 0.76);
+        setBatteryFill('battery-android', 0.76);
+      });
+    } else {
+      // fallback value
+      setBatteryFill('battery-ios', 0.76);
+      setBatteryFill('battery-android', 0.76);
+    }
+
+    /* ----------------- OS switching with animation ----------------- */
+    function showOS(os){
+      currentOS = os;
+      if(os === 'ios'){
+        stackIOS.classList.remove('inactive'); stackIOS.classList.add('active');
+        stackAndroid.classList.remove('active'); stackAndroid.classList.add('inactive');
+        // slightly tilt/scale effect
+        stackIOS.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
+        stackAndroid.style.transform = 'translateY(18px) scale(.98) rotateX(6deg)';
+      } else {
+        stackAndroid.classList.remove('inactive'); stackAndroid.classList.add('active');
+        stackIOS.classList.remove('active'); stackIOS.classList.add('inactive');
+        stackAndroid.style.transform = 'translateY(0) scale(1) rotateX(0deg)';
+        stackIOS.style.transform = 'translateY(18px) scale(.98) rotateX(6deg)';
+      }
+    }
+    // initial
+    renderProfile();
+    showOS(currentOS);
+
+    // toggle button click
+    toggleOSBtn.addEventListener('click', ()=> {
+      showOS(currentOS === 'ios' ? 'android' : 'ios');
+    });
+
+    /* ----------------- theme toggle ----------------- */
+    function setTheme(t){
+      theme = t;
+      if(t === 'dark'){
+        body.classList.add('dark');
+      } else {
+        body.classList.remove('dark');
+      }
+      // tweak accent color on verified badge and cover contrast
+      // (we keep CSS handles most)
+    }
+    toggleThemeBtn.addEventListener('click', ()=> {
+      setTheme(theme === 'dark' ? 'light' : 'dark');
+    });
+
+    /* ----------------- quick edit (shows how to edit via console) ----------------- */
+    editBtn.addEventListener('click', ()=> {
+      console.clear();
+      console.log("EDIT PROFILE SAMPLE: modify PROFILE_DATA and call renderProfile()");
+      console.log("Ex.: PROFILE_DATA.name = 'Novo Nome'; PROFILE_DATA.avatar = './me.jpg'; renderProfile();");
+      alert('Abra o console (F12) — instruções de edição foram logadas lá.');
+    });
+
+    /* ----------------- keyboard shortcuts (optional) ----------------- */
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'o') { showOS(currentOS === 'ios' ? 'android' : 'ios'); }
+      if(e.key === 't') { setTheme(theme === 'dark' ? 'light' : 'dark'); }
+    });
+
+    /* ----------------- make images replaceable: show comment ----------------- */
+    // Para trocar a imagem do avatar/capa diretamente no código:
+    // 1) substitua PROFILE_DATA.avatar por './me.jpg' (coloque o arquivo ao lado do index.html)
+    // 2) para capa, coloque PROFILE_DATA.cover_ios = "url('./cover.jpg')" ou uma gradient string.
+    // Após alterar PROFILE_DATA, chame renderProfile() no console ou faça location.reload();
+  </script>
+</body>
+</html>

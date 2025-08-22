@@ -1,0 +1,463 @@
+/* Paleta usada:
+   Azul primário: #0066ff
+   Azul secundário: #00ccff
+   Azul profundo sidebar: #0f1b2d
+   Azul link ativo: #0a84ff
+   Texto principal: #0f172a
+   Texto sobre azul: #eaf6ff
+   Bordas suaves: rgba(255,255,255,.18) / rgba(15,23,42,.12)
+*/
+
+/* Reset básico */
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0b63e6, #21b8ff);
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #101111;
+    background-attachment: fixed;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: auto;
+}
+
+/* Sidebar fixa */
+
+.navbar-brand-box {
+    padding: 16px 16px 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+}
+
+.navbar-nav {
+    list-style: none;
+    margin: 10px 0 0;
+    padding: 0 8px 16px;
+}
+
+.menu-title {
+    padding: 10px 8px;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: #9ec2ff;
+}
+
+.nav-item {
+    margin: 4px 0;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #e6f1ff;
+}
+
+.nav-link:hover {
+    background: rgba(255, 255, 255, .06);
+}
+
+
+
+/* Conteúdo principal à direita da sidebar */
+
+
+/* Efeitos sutis no fundo */
+.efeitos {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.bolha {
+    position: absolute;
+    width: 520px;
+    height: 520px;
+    border-radius: 50%;
+    filter: blur(50px);
+    opacity: .22;
+}
+
+.b1 {
+    left: -120px;
+    top: -140px;
+    background: radial-gradient(closest-side, #c6e6ff, transparent 70%);
+}
+
+.b2 {
+    right: -180px;
+    top: 10%;
+    background: radial-gradient(closest-side, #9ee9ff, transparent 70%);
+}
+
+.b3 {
+    left: 10%;
+    bottom: -200px;
+    background: radial-gradient(closest-side, #c7fff1, transparent 70%);
+}
+
+.faixa {
+    position: absolute;
+    inset: -30% -10%;
+    background: conic-gradient(from 210deg at 60% 40%, rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 18%);
+    filter: blur(90px);
+    transform: rotate(-8deg);
+}
+
+/* TOPO: logo no canto esquerdo + tabs à direita */
+.topo {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* esquerda ↔ direita */
+    padding: 12px 22px;
+    background: #fff;
+}
+
+.marca-topo {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* garante colado à esquerda */
+    gap: 10px;
+}
+
+.marca-topo img {
+    display: block;
+    height: 45px;
+    width: auto;
+}
+
+/* abas (SMS | RCS) à direita */
+
+.tabs {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+
+.tab {
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 500;
+    color: #34495e;
+    padding: 12px 24px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border: 1px solid rgba(80, 81, 83, 0.267);
+}
+
+
+.tab-ativa {
+    background: #0054a8;
+    color: #fff;
+    border-color: #0a84ff;
+}
+
+
+/* Grade principal */
+.grid-rcs {
+    position: relative;
+    z-index: 1;
+    padding: 14px 22px 30px;
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(540px, 1.2fr) minmax(340px, .9fr);
+    grid-template-areas:
+        "intro  cartao"
+        "bloco1 cartao"
+        "bloco2 cartao"
+        "full   full";
+}
+
+.grid-rcs .intro {
+    grid-area: intro;
+}
+
+
+
+.grid-rcs .bloco--1 {
+    grid-area: bloco1;
+}
+
+.grid-rcs .bloco--2 {
+    grid-area: bloco2;
+}
+
+.grid-rcs .bloco--full {
+    grid-area: full;
+}
+
+@media (max-width: 1200px) {
+    .grid-rcs {
+        grid-template-columns: 1.05fr .95fr;
+    }
+}
+
+@media (max-width: 980px) {
+    .grid-rcs {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "intro"
+            "cartao"
+            "bloco1"
+            "bloco2"
+            "full";
+    }
+
+    .mockup-celular.fixo {
+        position: static;
+    }
+
+    .mockup-celular img {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+}
+
+/* Intro e blocos */
+.intro {
+    margin-top: 50px;
+    font-size: 20px;
+    grid-area: intro;
+    padding: 0 0 16px;
+    color: #ffffff;
+
+}
+
+
+.intro h1 {
+    margin: 6px 0 10px;
+    font-size: clamp(26px, 4.6vw, 40px);
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.intro p {
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+
+
+/* Chips */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 50px;
+}
+
+.chips--suave .chip {
+    color: #050505;
+
+}
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+}
+
+.ponto {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+/* Ações */
+
+.acoes--cartao {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 45px;
+    padding-right: 10px;
+}
+
+.botao {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 40px;
+    min-height: 44px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* fundo (pode manter o seu degradê atual) */
+.botao-verde {
+    color: #fff;
+    background: linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%);
+
+}
+
+.botao-borda {
+    border: 3px solid transparent;
+    background-origin: padding-box, border-box;
+    background-clip: padding-box, border-box;
+    background-size: 100% 100%, 400% 100%;
+}
+
+.botao-borda:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .12);
+    color: #000000;
+    background-image:
+        linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%),
+        linear-gradient(45deg, #00aeff, #002bff, #00a2ff, #0400ff, #00aeff, #002bff, #00a2ff, #0400ff);
+    animation: borda-slide 5s linear infinite;
+
+}
+
+.botao-voltar {
+    margin-top: 9px;
+    height: 44px;
+    background: #ececec;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.botao-voltar:hover {
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.473);
+    background: #ffffff;
+    color: #000a92;
+}
+
+@keyframes borda-slide {
+    to {
+        background-position: 0 0, 200% 0;
+    }
+}
+
+@media (max-width: 980px) {
+    aside[aria-label="Exemplo no celular"] {
+        width: 100%;
+    }
+
+    .acoes--cartao {
+        width: 100%;
+        justify-content: center;
+        padding-right: 0;
+        margin-top: 28px;
+        gap: 8px;
+    }
+
+    .botao {
+        padding: 12px 28px;
+    }
+}
+
+@media (max-width: 640px) {
+    .acoes--cartao {
+        justify-content: center;
+    }
+
+    .botao {
+        width: 100%;
+        max-width: 360px;
+    }
+}
+
+@media (max-width: 420px) {
+    .botao {
+        max-width: none;
+        font-size: 0.95rem;
+        padding: 12px 16px;
+    }
+}
+
+/* evita hover “pesado” em dispositivos touch */
+@media (hover: hover) {
+    .botao-verde:hover {
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0);
+    }
+}
+
+
+
+.mockup-celular {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.mockup-celular.fixo {
+    position: sticky;
+    top: 18px;
+    align-self: start;
+}
+
+.mockup-celular img {
+    margin-top: 50px;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 300px;
+    border-radius: 14px;
+}
+
+aside[aria-label="Exemplo no celular"] {
+    justify-self: center;
+    width: max-content;
+}
+
+
+
+@media (max-width: 980px) {
+
+    .mockup-celular img {
+        max-width: 480px;
+        margin: 0 auto;
+    }
+}
+
+/* Rodapé */
+.rodape {
+
+    position: relative;
+
+    padding: 14px 22px 24px;
+    text-align: center;
+    color: #eaf6ff;
+    font-size: .95rem;
+}

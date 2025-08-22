@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Introdução RCS</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/etapa-3.css">
+    <link rel="stylesheet" href="/css/atalhos.css">
+    <link rel="stylesheet" href="/css/phone.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- =========================
+     ESTILOS (simples e comentados)
+     - tons azuis mais confortáveis
+     - sidebar fixa no padrão .app-menu.navbar-menu
+     - cards claros com vidro sutil
+========================== -->
+
+</head>
+
+<body>
+
+
+    <!-- ===================== ÁREA PRINCIPAL ===================== -->
+    <!-- ===================== ÁREA PRINCIPAL ===================== -->
+    <div class="area">
+        <!-- Efeitos de fundo -->
+        <div class="efeitos" aria-hidden="true">
+            <div class="faixa"></div>
+            <div class="bolha b1"></div>
+            <div class="bolha b2"></div>
+            <div class="bolha b3"></div>
+        </div>
+
+        <!-- Topo com logo à esquerda e tabs à direita -->
+        <header class="topo">
+            <a class="marca-topo" href="#">
+                <img src="imagem/logo/logo-short-code-black.svg" alt="Short Code">
+            </a>
+            <nav class="tabs">
+                <a class="tab" href="#">SMS</a>
+                <a class="tab tab-ativa" href="#">RCS</a>
+            </nav>
+        </header>
+
+        <!-- Conteúdo central dentro de um container -->
+        <div id="particles-js"></div>
+        <!-- ============ ETAPA: FORMULÁRIO DO AGENTE RCS ============ -->
+        <section id="etapa-agente-rcs" class="secao-rcs py-4 py-lg-5 ">
+            <div class="container">
+                <div class="row g-4 align-items-start cartao-vidro">
+
+                    <!-- Coluna ESQUERDA: formulário -->
+                    <div class="col-12 col-lg-6">
+                        <div class="p-3 p-md-4">
+                            <h2 class="h4 mb-2">Solicitar novo agente RCS</h2>
+                            <p class="texto-apoio small mb-3">
+                                Preencha as informações do agente. Esses dados serão usados no perfil RCS.
+                            </p>
+
+                            <form id="form-agente-rcs" novalidate>
+                                <!-- Nome (máx. 18) -->
+                                <div class="py-10">
+                                    <label for="nomeAgente" class="texto-formulario mb-10">Nome do Agente </label><span
+                                        class="texto-formulario-informativo"> (Máximo de 18 caracteres.)</span>
+                                    <input type="text" id="nomeAgente" name="nomeAgente" maxlength="18"
+                                        class="form-control" placeholder="Ex.: Short Code" required>
+
+                                </div>
+
+                                <!-- Descrição (máx. 100) -->
+                                <div class="py-10">
+                                    <label for="descAgente" class="texto-formulario mb-10">Descrição</label><span
+                                        class="texto-formulario-informativo"> (Até 100 caracteres.)</span>
+                                    <textarea style="height: 35px;" id="descAgente" name="descAgente" maxlength="100"
+                                        rows="2" class="form-control"
+                                        placeholder="Ex.: Atendimento e novidades por RCS."></textarea>
+                                </div>
+
+                                <!-- Telefone (SAC) -->
+                                <div class="py-10">
+                                    <label for="telSac" class="texto-formulario mb-10">Telefone </label><span
+                                        class="texto-formulario-informativo"> (Use um número válido de
+                                        atendimento.)</span>
+                                    <input type="tel" id="telSac" name="telSac" class="form-control"
+                                        placeholder="Ex.: (11) 90000-0000">
+
+                                </div>
+
+                                <!-- Site oficial -->
+                                <div class="py-10">
+                                    <label for="siteOficial" class="texto-formulario mb-10">Site oficial</label>
+                                    <input type="url" id="siteOficial" name="siteOficial" class="form-control" required
+                                        placeholder="https://suaempresa.com.br">
+                                </div>
+
+                                <!-- E-mail (SAC) -->
+                                <div class="py-10">
+                                    <label for="emailSac" class="texto-formulario mb-10">E-mail </label>
+                                    <input type="email" id="emailSac" name="emailSac" class="form-control" required
+                                        placeholder="atendimento@suaempresa.com.br">
+                                </div>
+
+                                <!-- Logos -->
+                                <div class="row g-3 py-10">
+                                    <div class="col-12">
+                                        <label for="logoQuadrada" class="texto-formulario mb-10">Logo
+                                            (224×224px)</label><span class="texto-formulario-informativo"> (PNG/JPG/SVG.
+                                            Fundo transparente recomendado.)</span>
+                                        <input type="file" id="logoQuadrada" name="logoQuadrada" class="form-control"
+                                            accept=".png,.jpg,.jpeg,.svg">
+
+                                    </div>
+                                    <div class="col-12 py-10">
+                                        <label for="logoBanner" class="texto-formulario mb-10">Banner
+                                            (1440×448px)</label>
+                                        <input type="file" id="logoBanner" name="logoBanner" class="form-control"
+                                            accept=".png,.jpg,.jpeg,.svg">
+                                    </div>
+                                </div>
+
+
+                                <!-- URL da política de privacidade -->
+
+                                <div class="linha-flex  mb-2">
+                                    <h6 class="m-0 texto-formulario s-24">Privacidade & Termos</h6>
+
+                                    <button id="btnAdicionarLinks" class="btn  botao-flexbox w-800" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#linksPrivacidade"
+                                        aria-expanded="false" aria-controls="linksPrivacidade">
+                                        Adicionar links
+                                    </button>
+                                </div>
+
+                                <!-- bloco que abre/fecha -->
+                                <div id="linksPrivacidade" class="collapse mt-2">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <label for="urlPolitica" class="form-label mt-10">
+                                                Insira sua URL da <strong>Política de Privacidade</strong>
+                                            </label>
+                                            <input type="url" id="urlPolitica" name="urlPolitica" class="form-control"
+                                                required placeholder="https://suaempresa.com.br/privacidade">
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="urlTermos" class="form-label">
+                                                Insira sua URL dos <strong>Termos de Serviço</strong>
+                                            </label>
+                                            <input type="url" id="urlTermos" name="urlTermos" class="form-control"
+                                                required placeholder="https://suaempresa.com.br/termos">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Coluna DIREITA: reserva para pré-visualização (celular) -->
+                    <!-- Coluna DIREITA: pré-visualização (celular) -->
+                    <!-- Coluna DIREITA: pré-visualização (celular) -->
+                    <!-- Coluna DIREITA: pré-visualização (celular) -->
+                    <div class="col-12 col-lg-6">
+                        <div class="p-3 p-md-4 col-previsao">
+
+                            <!-- Controles -->
+                            <div class="controles-simulador d-flex justify-content-between align-items-center mb-3">
+                                <div class="controle-os" role="tablist" aria-label="Sistema">
+                                    <input type="radio" name="os" id="sim-os-android" checked>
+                                    <label for="sim-os-android">Android</label>
+                                    <input type="radio" name="os" id="sim-os-ios">
+                                    <label for="sim-os-ios">iOS</label>
+                                </div>
+
+                                <div class="controle-tema" aria-label="Tema da tela">
+                                    <span class="me-2 text-white">Claro</span>
+                                    <label class="switch mb-0">
+                                        <input type="checkbox" id="sim-toggle-tema">
+                                        <span class="alavanca"></span>
+                                    </label>
+                                    <span class="ms-2 text-white">Escuro</span>
+                                </div>
+                            </div>
+
+                            <!-- Aparelho -->
+                            <div class="telefone-sim" data-os="android" data-tema="claro">
+                                <div class="moldura">
+
+                                    <span class="side-button side-vol1"></span>
+                                    <span class="side-button side-vol2"></span>
+                                    <span class="side-button side-power"></span>
+                                    <!-- alto-falante + câmera frontal estilo Android -->
+                                    <div class="notch-android" aria-hidden="true">
+                                        <span class="cam"></span>
+                                    </div>
+
+                                    <!-- Status -->
+                                    <div class="status-bar">
+                                        <div class="lado-esq">
+                                            <span class="hora-ao-vivo">12:00</span>
+                                        </div>
+                                        <div class="lado-centro ios">12:00</div>
+                                        <div class="lado-dir ">
+                                            <svg class="ico sinal" viewBox="0 0 24 24" aria-hidden="true">
+                                                <rect x="3" y="14" width="3" height="7" rx="1" fill="currentColor">
+                                                </rect>
+                                                <rect x="8" y="10" width="3" height="11" rx="1" fill="currentColor">
+                                                </rect>
+                                                <rect x="13" y="6" width="3" height="15" rx="1" fill="currentColor">
+                                                </rect>
+                                                <rect x="18" y="2" width="3" height="19" rx="1" fill="currentColor">
+                                                </rect>
+
+                                            </svg>
+                                            <svg class="ico wifi" viewBox="0 0 24 24" aria-hidden="true">
+                                                <path d="M2 8a14 14 0 0 1 20 0" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" />
+                                                <path d="M5 11a10 10 0 0 1 14 0" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" />
+                                                <path d="M8.5 14.5a6 6 0 0 1 7 0" fill="none" stroke="currentColor"
+                                                    stroke-width="2" stroke-linecap="round" />
+                                                <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+                                            </svg>
+                                            <svg class="ico bateria" viewBox="0 0 36 18" aria-hidden="true">
+                                                <rect x="1" y="3" width="30" height="12" rx="3" ry="3" fill="none"
+                                                    stroke="currentColor" stroke-width="2" />
+                                                <rect x="33" y="7" width="2" height="4" rx="1" fill="currentColor" />
+                                                <rect class="nivel" x="3" y="5" width="22" height="8" rx="2"
+                                                    fill="currentColor" />
+                                            </svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- iOS dynamic island -->
+                                    <div class="notch-ios"></div>
+
+                                    <!-- TELA -->
+                                    <div class="tela">
+                                        
+                                        <!-- ANDROID: com banner -->
+                                       <figure class="banner">
+  <img class="banner-img" alt="" hidden>
+  <div class="banner-fake">BANNER</div>
+
+  <!-- Título estático dentro do banner -->
+  <div class="banner-toptext" aria-hidden="true">
+   <svg class="ico-seta" viewBox="0 0 24 24" aria-hidden="true">
+  <!-- haste -->
+  <path d="M20 12H7" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round"/>
+  <!-- ponta -->
+  <path d="M12 6L6 12L12 18" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+    <span class="titulo">Informações e opções</span>
+  </div>
+
+  <img class="avatar" src="https://dummyimage.com/92x92/111/fff.png&text=SC" alt="Logo do agente">
+</figure>
+
+                                        <!-- iOS: só logo central -->
+                                        <div class="ios-hero" hidden>
+                                            <img class="ios-logo" src="https://dummyimage.com/96x96/111/fff.png&text=SC"
+                                                alt="Logo">
+                                        </div>
+
+                                        <!-- EXEMPLOS INICIAIS (substituídos ao digitar) -->
+                                        <div class="cabeca">
+                                            <h4 class="pv-nome">Nome</h4>
+                                            <p class="pv-descricao">
+                                                Descrição do agente RCS aqui
+                                            </p>
+                                        </div>
+
+                                        <div class="acoes-icones">
+                                            <a class="acao"><svg viewBox="0 0 24 24" class="ico-ac">
+                                                    <path
+                                                        d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h3.09a1 1 0 0 1 1 .75l1 3.49a1 1 0 0 1-.29 1L8.7 9.7a16 16 0 0 0 5.6 5.6l1.46-1.1a1 1 0 0 1 1-.14l3.49 1a1 1 0 0 1 .75 1.06Z"
+                                                        fill="currentColor" />
+                                                </svg><span>Ligar</span></a>
+                                            <a class="acao"><svg viewBox="0 0 24 24" class="ico-ac">
+                                                    <path
+                                                        d="M12 3a9 9 0 1 0 9 9A9 9 0 0 0 12 3Zm0 0c-2.5 0-4.5 4-4.5 9s2 9 4.5 9 4.5-4 4.5-9-2-9-4.5-9Zm-7.8 9h15.6"
+                                                        fill="none" stroke="currentColor" stroke-width="2" />
+                                                </svg><span>Site</span></a>
+                                            <a class="acao"><svg viewBox="0 0 24 24" class="ico-ac">
+                                                    <path
+                                                        d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
+                                                        fill="none" stroke="currentColor" stroke-width="2" />
+                                                </svg><span>E-mail</span></a>
+                                        </div>
+
+                                        <!-- Abas -->
+                                        <div class="abas">
+                                            <span class="aba aba-infos ativa">Informações</span>
+                                            <span class="aba aba-opcoes">Opções</span>
+                                        </div>
+
+                                        <!-- PAINEL: Informações (o que você já usava) -->
+                                        <div class="painel painel-infos">
+                                            <ul class="lista-info">
+                                                <li>
+                                                    <svg viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h3.09a1 1 0 0 1 1 .75l1 3.49a1 1 0 0 1-.29 1L8.7 9.7a16 16 0 0 0 5.6 5.6l1.46-1.1a1 1 0 0 1 1-.14l3.49 1a1 1 0 0 1 .75 1.06Z"
+                                                            fill="currentColor" />
+                                                    </svg>
+                                                    <div><strong class="pv-telefone">(00)
+                                                            0000-0000</strong><small>Telefone</small></div>
+                                                </li>
+                                                <li>
+                                                    <svg viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M12 3a9 9 0 1 0 9 9A9 9 0 0 0 12 3Zm0 0c-2.5 0-4.5 4-4.5 9s2 9 4.5 9 4.5-4 4.5-9-2-9-4.5-9Zm-7.8 9h15.6"
+                                                            fill="none" stroke="currentColor" stroke-width="2" />
+                                                    </svg>
+                                                    <div><strong
+                                                            class="pv-site">seusite.co.br</strong><small>Site</small>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <svg viewBox="0 0 24 24">
+                                                        <path
+                                                            d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
+                                                            fill="none" stroke="currentColor" stroke-width="2" />
+                                                    </svg>
+                                                    <div><strong
+                                                            class="pv-email">email@suaempresa.com.br</strong><small>E-mail</small>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- PAINEL: Opções (apenas Android) -->
+                                        <div class="painel painel-opcoes" hidden>
+                                            <div class="op-titulo">Notificações</div>
+
+                                            <div class="op-legenda">Empresa</div>
+                                            <ul class="op-lista">
+                                                <li class="op-item">Bloquear e denunciar spam</li>
+                                                <li class="op-item opt-politica" hidden>Ver a política de privacidade
+                                                </li>
+                                                <li class="op-item opt-termos" hidden>Ver os Termos de Serviço</li>
+                                                <li class="op-item">Saiba mais</li>
+                                            </ul>
+                                        </div>
+                                        <!-- Barra de navegação Android (somente Android) -->
+                                        <div class="nav-android" aria-hidden="true">
+                                            <div class="nav-btn voltar" title="Voltar">
+                                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                                    <path d="M15 19 8 12l7-7" fill="none" stroke="currentColor"
+                                                        stroke-width="2" stroke-linecap="round"
+                                                        stroke-linejoin="round" />
+                                                </svg>
+                                            </div>
+
+                                            <div class="nav-btn home" title="Início" aria-hidden="true">
+                                                <span class="home-circ"></span>
+                                            </div>
+
+                                            <div class="nav-btn recentes" title="Recentes" aria-hidden="true">
+                                                <span class="barra"></span>
+                                                <span class="barra"></span>
+                                                <span class="barra"></span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Ações -->
+                    <div class="d-flex justify-content-end gap-2 mb-30">
+                        <a href="etapa-2.html" class="botao-voltar">Voltar</a>
+                        <a href="#" class="botao botao-verde botao-borda">Salvar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+    <footer class="rodape">
+        © <span id="ano"></span> Short Code — Introdução RCS
+    </footer>
+    <script>
+        (() => {
+            const telSim = document.querySelector('.telefone-sim');
+            if (!telSim) return;
+
+            // elementos das abas/painéis
+            const abaInfos = document.querySelector('.aba-infos');
+            const abaOpcoes = document.querySelector('.aba-opcoes');
+            const painelInfos = document.querySelector('.painel-infos');
+            const painelOpcoes = document.querySelector('.painel-opcoes');
+
+            // URLs do formulário
+            const urlPolitica = document.getElementById('urlPolitica');
+            const urlTermos = document.getElementById('urlTermos');
+
+            // Itens da lista de opções
+            const liPolitica = document.querySelector('.opt-politica');
+            const liTermos = document.querySelector('.opt-termos');
+
+            // Botão/collapse
+            const btnLinks =
+                document.getElementById('btnAdicionarLinks') ||
+                document.querySelector('[data-bs-target="#linksPrivacidade"]');
+            const colLinks = document.getElementById('linksPrivacidade');
+
+            // utilitário
+            function setTab(tab) { (window.__simSetTab || function () { })(tab); }
+
+            // mostra/oculta linhas conforme tem URL
+            function syncOptionsVisibility() {
+                const hasPolitica = !!(urlPolitica && urlPolitica.value.trim());
+                const hasTermos = !!(urlTermos && urlTermos.value.trim());
+                if (liPolitica) liPolitica.hidden = !hasPolitica;
+                if (liTermos) liTermos.hidden = !hasTermos;
+            }
+            [urlPolitica, urlTermos].forEach(el => el && el.addEventListener('input', syncOptionsVisibility));
+            syncOptionsVisibility();
+
+            // alterna aba de acordo com o estado do collapse
+            function syncByCollapse() {
+                const aberto = colLinks && (
+                    colLinks.classList.contains('show') ||
+                    (btnLinks && btnLinks.getAttribute('aria-expanded') === 'true')
+                );
+                setTab(aberto ? 'opcoes' : 'infos');
+            }
+
+            // integra com Bootstrap se presente
+            if (colLinks) {
+                colLinks.addEventListener('shown.bs.collapse', syncByCollapse);
+                colLinks.addEventListener('hidden.bs.collapse', syncByCollapse);
+            }
+            if (btnLinks) {
+                btnLinks.addEventListener('click', () => setTimeout(syncByCollapse, 150));
+            }
+            // estado inicial
+            syncByCollapse();
+
+            // troca de OS força "Informações" no iOS
+            const osAndroid = document.getElementById('sim-os-android');
+            const osIos = document.getElementById('sim-os-ios');
+            function applyOS() {
+                const os = (osIos && osIos.checked) ? 'ios' : 'android';
+                telSim.dataset.os = os;
+                if (os === 'ios') setTab('infos');
+            }
+            if (osAndroid) osAndroid.addEventListener('change', applyOS);
+            if (osIos) osIos.addEventListener('change', applyOS);
+
+            // permitir clicar nas abas manualmente
+            if (abaInfos) abaInfos.addEventListener('click', () => setTab('infos'));
+            if (abaOpcoes) abaOpcoes.addEventListener('click', () => setTab('opcoes'));
+        })();
+    </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script>
+        document.getElementById('ano').textContent = new Date().getFullYear();
+    </script>
+    <script src="/js/particulas.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
