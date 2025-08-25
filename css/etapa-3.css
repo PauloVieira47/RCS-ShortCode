@@ -68,6 +68,9 @@
     top: 80px;
 }
 
+
+.controle-os, .controle-tema{ margin:0 !important; }
+
 .linha-flex{
   display:flex;
   align-items:center;
