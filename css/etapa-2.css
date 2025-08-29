@@ -1,0 +1,138 @@
+/* ====== Políticas (apenas tipografia/layout) ====== */
+
+/* ===== Particles sempre atrás e sem capturar clique ===== */
+/* ===== Particles sempre atrás e sem capturar clique ===== */
+#particles-etapa2{
+  position: fixed;      /* cobre toda a tela como fundo */
+  inset: 0;
+  z-index: 0;           /* atrás do conteúdo */
+  pointer-events: none; /* NÃO recebe cliques */
+}
+
+/* o plugin injeta um <canvas>; garantimos o mesmo comportamento */
+canvas.particles-js-canvas-el{
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
+}
+
+/* garanta que seu conteúdo fique acima */
+.pol-section, .topo, .rodape{
+  position: relative;
+  z-index: 1;
+}
+
+
+.pol-section {
+  color: #fff;
+  z-index: 2;
+}
+
+.pol-title {
+  text-align: center;
+  font-weight: 800;
+  margin: 0 0 6px;
+  font-size: clamp(28px, 4vw, 44px);
+}
+.colunas-exemplo-politicas {
+
+    justify-content: center;
+    align-items: center !important;
+    gap: 40px;
+}
+.col-lg-7 {
+  flex: 0 0 auto;
+  width: 36.333333% !important;
+}
+.pol-sub {
+  text-align: center;
+  opacity: .9;
+  margin: 0 auto 22px;
+  max-width: 900px;
+}
+
+.pol-fig img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pol-h4 {
+  font-size: 1.05rem;
+  margin: 0 0 .5rem;
+}
+
+.pol-bullets {
+  margin: .25rem 0 0 1.2rem;
+  padding: 0;
+  cursor: pointer;
+}
+
+.pol-bullets li {
+  margin: .35rem 0;
+}
+
+.pol-aceite a {
+  color: #fff;
+  text-decoration: underline;
+}
+.pol-aceite a:hover {
+  color: #000000;
+ 
+}
+.pol-h3 {
+  margin: 2px 0 12px;
+  font-weight: 700;
+}
+
+.pol-list {
+  display: grid;
+  gap: 12px;
+}
+
+.pol-block h5 {
+  margin: 0 0 .25rem;
+  font-weight: 700;
+}
+
+.pol-block ul {
+  margin: 0 0 .25rem 1.1rem;
+  padding: 0;
+}
+
+.pol-block li {
+  margin: .2rem 0;
+}
+
+/* empurra um pouco em telas menores */
+@media (max-width: 992px) {
+  .pol-title {
+    margin-bottom: 8px;
+  }
+}
+
+/* centraliza e limita a largura do bloco de conteúdo */
+.pol-wrap {
+  max-width: 1100px;
+  /* ajuste fino se quiser: 1000–1200 */
+  margin: 0 auto;
+}
+
+/* empurra levemente os botões para a direita e dá respiro */
+.pol-actions-row {
+  margin-top: 12px;
+}
+
+.pol-actions {
+  padding-right: 6px;
+}
+
+/* em telas menores, centraliza os botões */
+@media (max-width: 991.98px) {
+  .pol-actions {
+    justify-content: center !important;
+    padding-right: 0;
+  }
+}

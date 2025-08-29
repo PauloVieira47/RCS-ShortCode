@@ -1,0 +1,420 @@
+/* ===== ANDROID — TELA 3 (CONVERSA) — COMPACT ===== */
+/* nada aqui mexe na .tela */
+
+/* ========== APPBAR ========== */
+/* ---------- AppBar ---------- */
+.android-conversa .appbar.conv-appbar {
+    margin-top: 30px;
+    height: 29px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, .06);
+    color: #e5e7eb;
+
+}
+
+.telefone-sim[data-tema="claro"] .android-conversa .appbar.conv-appbar {
+    color: #111827;
+}
+
+.android-conversa .btn-ico svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* esquerda: só o avatar */
+.android-conversa .conv-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+.android-conversa .conv-avatar {
+    width: 28px;
+    height: 28px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+/* logo pequena */
+.conv-logo.conv-appbar {
+    position: static;
+    margin-left: -109px;
+    transform: translateX(-199%);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+.conv-logo.conv-appbar[src=""],
+.conv-logo.conv-appbar:not([src]) {
+    display: none;
+}
+
+/* fallback quando não há logo pequena */
+.conv-logo.conv-appbar[src=""]~.conv-user,
+.conv-logo.conv-appbar:not([src])~.conv-user {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #111;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.conv-logo.conv-appbar:not([src=""])~.conv-user {
+    display: none !important;
+}
+
+/* TÍTULO: ancorado à esquerda (cresce só para a direita) */
+.android-conversa .titulo-app {
+    position: absolute;
+    left: 22%;
+    transform: none;
+    right: 56px;
+    max-width: calc(100% - 35% - 56px);
+
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+    pointer-events: none;
+}
+
+
+/* ---------- Hero ---------- */
+.android-conversa .conv-hero {
+    padding: 5px 16px 10px;
+    text-align: center;
+    border-bottom: 1px solid rgb(0 0 0 / 14%);
+}
+
+.telefone-sim[data-tema="escuro"] .android-conversa .conv-hero {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.151);
+}
+
+.center-logo-wrap {
+    position: relative;
+    width: 72px;
+    height: 72px;
+    margin: 6px auto 10px;
+}
+
+.center-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #111;
+    display: block;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+}
+
+.center-logo[src=""],
+.center-logo:not([src]) {
+    display: none;
+}
+
+.verified-badge {
+    position: absolute;
+    right: -8px;
+    bottom: -4px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #1e73ff;
+    color: #0029ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 2px #fff;
+}
+
+.android-conversa .conv-desc {
+    margin: 0 auto;
+    max-width: 85%;
+    font-size: 13px;
+    line-height: 1.45;
+    opacity: .92;
+    color: inherit;
+}
+
+/* ========== CHIP DE HORA ========== */
+.android-conversa .conv-time {
+    margin: 6px auto 10px;
+    width: max-content;
+    font-size: 11px;
+    opacity: .75;
+    padding: 3px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, .08);
+}
+
+.telefone-sim[data-tema="escuro"] .android-conversa .conv-time {
+    border-color: rgba(255, 255, 255, .12);
+}
+
+/* ========== CARROSSEL ========== */
+.android-conversa .conv-cards {
+    flex: 0 0 auto;
+    padding: 0 8px 10px;
+}
+
+.android-conversa .cards-scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding: 0 4px 8px;
+    overscroll-behavior-x: contain;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    cursor: grab;
+}
+
+.android-conversa .cards-scroll:active {
+    cursor: grabbing;
+}
+
+.android-conversa .cards-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.android-conversa .rcs-card {
+    flex: 0 0 84%;
+    max-width: 84%;
+    scroll-snap-align: start;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0f1720;
+    border: 1px solid rgba(255, 255, 255, .08);
+}
+
+.telefone-sim[data-tema="claro"] .android-conversa .rcs-card {
+    background: #fff;
+    border-color: rgba(0, 0, 0, .08);
+}
+
+.android-conversa .rcs-card .card-img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.android-conversa .rcs-card .card-body {
+    padding: 10px;
+}
+
+.android-conversa .rcs-card .card-title {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.android-conversa .rcs-card .card-text {
+    margin: 0 0 10px;
+    font-size: 12.5px;
+    line-height: 1.45;
+}
+
+/* CTA do card (chip) */
+.android-conversa .rcs-card .card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    height: auto;
+    border-radius: 999px;
+    border: 1px solid rgba(125, 211, 252, .25);
+    background: transparent;
+
+    font-weight: 500;
+    font-size: 13px;
+}
+
+.android-conversa .rcs-card .card-cta .ico {
+    width: 18px;
+    height: 18px;
+    color: #22c55e;
+}
+/* scroller: rolagem na horizontal e sem selecionar texto */
+.android-conversa .cards-scroll{
+  user-select: none;              /* evita seleção acidental */
+  -webkit-user-select: none;
+  touch-action: pan-x;            /* gesto horizontal, não briga com pan-y */
+  cursor: grab;
+}
+.android-conversa .cards-scroll.is-dragging{ cursor: grabbing; }
+
+/* enquanto arrasta, nada seleciona */
+.android-conversa .cards-scroll.is-dragging,
+.android-conversa .cards-scroll.is-dragging *{
+  user-select: none !important;
+}
+
+/* imagem não “agarra” para arrastar fantasma */
+.android-conversa .rcs-card .card-img{
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* links/botões continuam clicáveis normalmente */
+.android-conversa .rcs-card .card-cta,
+.android-conversa .rcs-card .card-cta *{
+  pointer-events: auto;
+}
+
+/* DICA opcional: se ainda “pular” 2+ cards num flick forte */
+.android-conversa .rcs-card{
+  scroll-snap-stop: always; /* combina com seu scroll-snap-align:start */
+}
+
+
+/* ========== COMPOSER ========== */
+/* Deixa a área do composer em coluna para alinhar o chip à direita sem quebrar a barra */
+.android-conversa .conv-composer {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Chip padrão que você já tem permanece igual */
+.android-conversa .chip-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, .12);
+    background: transparent;
+    margin-bottom: 8px;
+}
+
+.android-conversa .chip-cta--whats {
+    align-self: flex-end;
+}
+
+.android-conversa .rcs-card .card-cta svg{
+  width: 16px !important;
+  height: 16px !important;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+.android-conversa .chip-cta--whats svg{
+  width: 16px !important;
+  height: 16px !important;
+  display: inline-block;
+  flex: 0 0 auto;
+}
+
+.android-conversa .chip-cta--whats .ico-whats circle {
+    fill: currentColor;
+}
+
+/* tema escuro que você já usa */
+.telefone-sim[data-tema="escuro"] .android-conversa .chip-cta {
+    border-color: rgba(255, 255, 255, .14);
+    color: #fff;
+}
+
+.android-conversa .composer-bar {
+    width: 92%;
+    margin-inline: auto;
+    /* centraliza horizontalmente */
+    /* margin: 0 auto;  <- alternativa equivalente */
+}
+
+
+.android-conversa .composer-bar {
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    border-radius: 22px;
+    border: 1px solid rgba(0, 0, 0, .08);
+    background: #e9eef5;
+    color: #111827;
+    /* claro, igual print */
+}
+
+.telefone-sim[data-tema="escuro"] .android-conversa .composer-bar {
+    background: #0b1220;
+    border-color: rgba(255, 255, 255, .12);
+    color: #e5e7eb;
+}
+
+.android-conversa .conv-input {
+    flex: 1;
+    height: 28px;
+    border: 0;
+    background: transparent;
+    outline: 0;
+    font-size: 14px;
+}
+
+.android-conversa .composer-bar .btn-ico svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ========== NAV ANDROID (ESTÁTICA, DENTRO DA TELA 3) ========== */
+.android-conversa {
+    position: relative;
+}
+
+/* referencial do absolute */
+.android-conversa .nav-android.nav-android-t3 {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 56px;
+    z-index: 5;
+    pointer-events: none;
+    /* apenas visual; não bloqueia o carrossel */
+}
+
+/* ========== RESPONSIVO EXTRA PEQUENO ========== */
+@media (max-width:390px) {
+    .android-conversa .rcs-card {
+        flex-basis: 86%;
+        max-width: 86%;
+    }
+
+    .android-conversa .rcs-card .card-img {
+        height: 140px;
+    }
+}
+
+/* Se você marca iOS na raiz assim: <div class="telefone-sim" data-os="ios"> */
+.telefone-sim[data-os="ios"] .android-conversa,
+.telefone-sim[data-os="ios"] .nav-android,
+.telefone-sim[data-os="ios"] .android-mensagens {  /* já esconde a tela 2 também */
+  display: none !important;
+}
+
+/* OU se você usa data-plataforma="ios" */
+.telefone-sim[data-plataforma="ios"] .android-conversa,
+.telefone-sim[data-plataforma="ios"] .nav-android { 
+  display: none !important;
+}
+
+/* OU se você adiciona uma classe no <body> */
+body.is-ios .android-conversa,
+body.is-ios .nav-android {
+  display: none !important;
+}

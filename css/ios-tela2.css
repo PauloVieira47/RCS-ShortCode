@@ -1,0 +1,160 @@
+/* ==========================================================
+   VISIBILIDADE POR OS
+   ========================================================== */
+.telefone-sim[data-os="ios"] .android-page,
+.telefone-sim[data-os="ios"] .android-mensagens,
+.telefone-sim[data-os="ios"] .android-conversa { display: none !important; }
+
+.stack-ios { display: none; }
+.telefone-sim[data-os="ios"] .stack-ios { display: block; }
+
+/* Só a screen ativa aparece dentro do stack iOS */
+.stack-ios .screen { display: none; }
+.stack-ios .screen.ativo { display: block; }
+
+/* ==========================================================
+   TEMA P/B DA TELA 2 (CHAPADO)
+   ========================================================== */
+/* Escuro (padrão) */
+.telefone-sim[data-os="ios"]:not([data-tema]),
+.telefone-sim[data-os="ios"][data-tema="escuro"]{
+  --ios2-bg:   #000;                 /* fundo preto */
+  --ios2-text: #fff;                 /* texto principal */
+  --ios2-sub:  #b3b3b3;              /* texto secundário */
+  --ios2-div:  rgba(255,255,255,.12);
+  --ios2-home: #6b7280;              /* barra home */
+}
+/* Claro */
+.telefone-sim[data-os="ios"][data-tema="claro"]{
+  --ios2-bg:   #fff;                 /* fundo branco */
+  --ios2-text: #000;
+  --ios2-sub:  #525252;
+  --ios2-div:  rgba(0,0,0,.12);
+  --ios2-home: #cbd5e1;
+}
+
+/* ==========================================================
+   iOS — TELA 2 (lista) — layout proporcional e chapado
+   ========================================================== */
+.telefone-sim[data-os="ios"] .ios2-app{
+  /* ocupa toda a área útil da .screen */
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  background: var(--ios2-bg) !important;
+  color: var(--ios2-text) !important;
+  overflow: hidden;
+  /* sem sheet, sem cantos — a moldura já é arredondada */
+  border-radius: 0; box-shadow: none;
+}
+
+/* topo: dá uma “folga” para descolar da borda superior */
+.telefone-sim[data-os="ios"] .ios2-top{
+  flex: 0 0 60px;                    /* altura do appbar */
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px 8px;            /* empurra levemente para baixo */
+  background: var(--ios2-bg) !important;
+  z-index: 5;
+}
+
+/* título centrado visualmente */
+.telefone-sim[data-os="ios"] .ios2-title{
+  font-size: 18px; font-weight: 700; line-height: 1; margin: 0;
+  color: var(--ios2-text);
+}
+.telefone-sim[data-os="ios"] .ios2-title::after{ display: none; } /* sem barra azul */
+
+/* botões do topo em P/B */
+.telefone-sim[data-os="ios"] .ios2-btn-edit,
+.telefone-sim[data-os="ios"] .ios2-menu{
+  background: transparent !important;
+  color: var(--ios2-text) !important;
+  border-radius: 999px;
+  box-shadow: 0 0 0 1px var(--ios2-div) inset;
+}
+.telefone-sim[data-os="ios"] .ios2-menu-ico{ width: 22px; height: 22px; }
+.telefone-sim[data-os="ios"] .ios2-badge{
+  background: var(--ios2-text); color: var(--ios2-bg);
+  font-weight: 700; font-size: 12px; line-height: 1; padding: 4px 6px; border-radius: 999px;
+}
+
+/* lista: ocupa o miolo e começa mais para baixo (folga do topo) */
+.telefone-sim[data-os="ios"] .ios2-list{
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 10px 0 12px;              /* conteúdo “desce” um pouco */
+  background: var(--ios2-bg);
+}
+
+/* itens da lista */
+.telefone-sim[data-os="ios"] .ios2-row{
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 16px; position: relative;
+}
+.telefone-sim[data-os="ios"] .ios2-row + .ios2-row{
+  border-top: 1px solid var(--ios2-div);
+}
+.telefone-sim[data-os="ios"] .ios2-avatar{
+  width: 42px; height: 42px; border-radius: 2px; overflow: hidden; flex: 0 0 42px;
+}
+.telefone-sim[data-os="ios"][data-tema="claro"] .logo-ios2 {
+    background:  #efefef !important;
+}
+.telefone-sim[data-os="ios"] .ios2-avatar img{ width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.telefone-sim[data-os="ios"] .ios2-text{ min-width: 0; flex: 1; }
+.telefone-sim[data-os="ios"] .ios2-name{
+  font-weight: 700; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  color: var(--ios2-text);
+}
+.telefone-sim[data-os="ios"] .ios2-sub{
+  font-size: 14px; color: var(--ios2-sub);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.telefone-sim[data-os="ios"] .ios2-meta{ display:flex; align-items:center; gap:6px; margin-left:auto; }
+.telefone-sim[data-os="ios"] .ios2-date{ font-size: 12px; color: var(--ios2-sub); }
+.telefone-sim[data-os="ios"] .ios2-chevron{ width: 18px; height: 18px; opacity: .9; color: var(--ios2-sub); }
+
+/* home indicator REAL no pé da tela */
+.telefone-sim[data-os="ios"] .ios2-home{
+  flex: 0 0 28px;                    /* altura fixa */
+  display: grid; place-items: center;
+  background: var(--ios2-bg) !important;
+  margin-top: auto;                  /* gruda no rodapé */
+}
+.telefone-sim[data-os="ios"] .ios2-home::after{
+  content: ""; width: 120px; height: 5px; border-radius: 999px; background: var(--ios2-home);
+}
+
+/* ==========================================================
+   CONTROLES EXTERNOS (setas e bolinhas) — APENAS UM POR VEZ
+   ========================================================== */
+.preview-controls-ios{
+  display: none; justify-content: center; align-items: center;
+  gap: 12px; margin-top: 16px;
+}
+.preview-controls-ios .btn-prev-i,
+.preview-controls-ios .btn-next-i{
+  cursor: pointer; width: 44px; height: 44px; border-radius: 999px;
+  border: 0; background: #0f2233; color: #fff; display: grid; place-items: center;
+}
+.preview-controls-ios .btn-prev-i svg,
+.preview-controls-ios .btn-next-i svg{ width: 22px; height: 22px; }
+.preview-dots-i{ display:flex; gap:6px; }
+.preview-dots-i span{ width:8px; height:8px; border-radius:999px; background:#cbd5e1; opacity:.5; }
+.preview-dots-i span.on{ opacity:1; }
+
+/* alternância com os controles Android */
+.telefone-sim[data-os="ios"]     ~ .preview-controls      { display: none !important; }
+.telefone-sim[data-os="ios"]     ~ .preview-controls-ios  { display: flex; }
+.telefone-sim[data-os="android"] ~ .preview-controls-ios  { display: none !important; }
+/* Quanto você quer descer a tela 2 (0–56px, por exemplo) */
+.telefone-sim[data-os="ios"]{ --ios2-safe-top: 35px; } /* ↑ ajuste aqui */
+
+/* Aplica esse “respiro” no topo da tela 2 */
+.telefone-sim[data-os="ios"] .ios2-app{
+  padding-top: var(--ios2-safe-top);
+}
+
+/* Garante que o topo continue alinhado e a lista “desça” junto */
+.telefone-sim[data-os="ios"] .ios2-top{ margin-top: 0; }
+.telefone-sim[data-os="ios"] .ios2-list{ padding-top: 12px; } /* pode aumentar tb se quiser */

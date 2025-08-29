@@ -344,7 +344,8 @@
     font-weight: 100;
     letter-spacing: .2px;
     line-height: 1;
-    color: inherit
+    color: inherit;
+   
 }
 
 .telefone-sim[data-tema="claro"] .banner-toptext {
@@ -355,9 +356,21 @@
     color: #ffffff
 }
 
-.tela:has(.aba-opcoes.ativa) .banner-img:not([hidden]) {
-    transform: scaleY(.55)
+
+.banner .banner-fake,
+.banner .banner-img,
+.banner .avatar {
+  pointer-events: none;
 }
+
+
+.banner  .ico-seta {
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+
+.banner .banner-toptext { z-index: 2; }
 
 .telefone-sim .avatar {
     position: absolute;
@@ -470,7 +483,8 @@
     line-height: 1.1;
     opacity: .65;
     text-decoration: none;
-    text-indent: 0
+    text-indent: 0;
+    cursor: pointer;
 }
 
 .aba-infos {
@@ -623,11 +637,11 @@
     padding-bottom: 56px
 }
 
-.nav-android {
+.nav-android { 
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: -57px;
     height: 52px;
     display: flex;
     align-items: center;
@@ -693,6 +707,9 @@
 .nav-android .nav-btn:hover {
     opacity: 1
 }
+
+
+.telefone-sim[data-os="ios"]  .android-mensagens{ display:none !important; } /* tela 2 não aparece no iOS */
 
 /* ======================= RESPONSIVO ======================= */
 @media (max-width:992px) {
