@@ -2,498 +2,1096 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Introdução RCS</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Introdução RCS</title>
 
-    <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="/css/etapa-3.css">
-    <link rel="stylesheet" href="/css/atalhos.css">
-    <link rel="stylesheet" href="/css/phone.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/etapa-3.css">
+  <link rel="stylesheet" href="/css/atalhos.css">
+  <link rel="stylesheet" href="/css/phone.css">
+  <link rel="stylesheet" href="/css/phone-caixa.css">
+  <link rel="stylesheet" href="/css/phone-conversa.css">
+  <link rel="stylesheet" href="/css/ios-tela2.css">
+  <link rel="stylesheet" href="/css/ios-tela3.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- =========================
-     ESTILOS (simples e comentados)
-     - tons azuis mais confortáveis
-     - sidebar fixa no padrão .app-menu.navbar-menu
-     - cards claros com vidro sutil
-========================== -->
+
 
 </head>
 
 <body>
 
-
-    <!-- ===================== ÁREA PRINCIPAL ===================== -->
-    <!-- ===================== ÁREA PRINCIPAL ===================== -->
-    <div class="area">
-        <!-- Efeitos de fundo -->
-        <div class="efeitos" aria-hidden="true">
-            <div class="faixa"></div>
-            <div class="bolha b1"></div>
-            <div class="bolha b2"></div>
-            <div class="bolha b3"></div>
-        </div>
-
-        <!-- Topo com logo à esquerda e tabs à direita -->
-        <header class="topo">
-            <a class="marca-topo" href="#">
-                <img src="imagem/logo/logo-short-code-black.svg" alt="Short Code">
-            </a>
-            <nav class="tabs">
-                <a class="tab" href="#">SMS</a>
-                <a class="tab tab-ativa" href="#">RCS</a>
-            </nav>
-        </header>
-
-        <!-- Conteúdo central dentro de um container -->
-        <div id="particles-js"></div>
-        <!-- ============ ETAPA: FORMULÁRIO DO AGENTE RCS ============ -->
-        <section id="etapa-agente-rcs" class="secao-rcs py-4 py-lg-5 ">
-            <div class="container">
-                
-                
-                <div class="row g-4 align-items-start cartao-vidro">
-                    
-
-                    <!-- Coluna ESQUERDA: formulário -->
-                    <div class="col-12 col-lg-6">
-                        <div class="p-3 p-md-4">
-                            <h2 class="h4 mb-2">Solicitar novo agente RCS</h2>
-                            <p class="texto-apoio small mb-3">
-                                Preencha as informações do agente. Esses dados serão usados no perfil RCS.
-                            </p>
-
-                            <form id="form-agente-rcs" novalidate>
-                                <!-- Nome (máx. 18) -->
-                                <div class="py-10">
-                                    <label for="nomeAgente" class="texto-formulario mb-10">Nome do Agente </label><span
-                                        class="texto-formulario-informativo"> (Máximo de 18 caracteres.)</span>
-                                    <input type="text" id="nomeAgente" name="nomeAgente" maxlength="18"
-                                        class="form-control" placeholder="Ex.: Short Code" required>
-
-                                </div>
-
-                                <!-- Descrição (máx. 100) -->
-                                <div class="py-10">
-                                    <label for="descAgente" class="texto-formulario mb-10">Descrição</label><span
-                                        class="texto-formulario-informativo"> (Até 100 caracteres.)</span>
-                                    <textarea style="height: 35px;" id="descAgente" name="descAgente" maxlength="100"
-                                        rows="2" class="form-control"
-                                        placeholder="Ex.: Atendimento e novidades por RCS."></textarea>
-                                </div>
-
-                                <!-- Telefone (SAC) -->
-                                <div class="py-10">
-                                    <label for="telSac" class="texto-formulario mb-10">Telefone </label><span
-                                        class="texto-formulario-informativo"> (Use um número válido de
-                                        atendimento.)</span>
-                                    <input type="tel" id="telSac" name="telSac" class="form-control"
-                                        placeholder="Ex.: (11) 90000-0000">
-
-                                </div>
-
-                                <!-- Site oficial -->
-                                <div class="py-10">
-                                    <label for="siteOficial" class="texto-formulario mb-10">Site oficial</label>
-                                    <input type="url" id="siteOficial" name="siteOficial" class="form-control" required
-                                        placeholder="https://suaempresa.com.br">
-                                </div>
-
-                                <!-- E-mail (SAC) -->
-                                <div class="py-10">
-                                    <label for="emailSac" class="texto-formulario mb-10">E-mail </label>
-                                    <input type="email" id="emailSac" name="emailSac" class="form-control" required
-                                        placeholder="atendimento@suaempresa.com.br">
-                                </div>
-
-                                <!-- Logos -->
-                                <div class="row g-3 py-10">
-                                    <div class="col-12">
-                                        <label for="logoQuadrada" class="texto-formulario mb-10">Logo
-                                            (224×224px)</label><span class="texto-formulario-informativo"> (PNG/JPG/SVG.
-                                            Fundo transparente recomendado.)</span>
-                                        <input type="file" id="logoQuadrada" name="logoQuadrada" class="form-control"
-                                            accept=".png,.jpg,.jpeg,.svg">
-
-                                    </div>
-                                    <div class="col-12 py-10">
-                                        <label for="logoBanner" class="texto-formulario mb-10">Banner
-                                            (1440×448px)</label>
-                                        <input type="file" id="logoBanner" name="logoBanner" class="form-control"
-                                            accept=".png,.jpg,.jpeg,.svg">
-                                    </div>
-                                </div>
-
-
-                                <!-- URL da política de privacidade -->
-
-                                <div class="linha-flex  mb-2">
-                                    <h6 class="m-0 texto-formulario s-24">Privacidade & Termos</h6>
-
-                                    <button id="btnAdicionarLinks" class="btn  botao-flexbox w-800" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#linksPrivacidade"
-                                        aria-expanded="false" aria-controls="linksPrivacidade">
-                                        Adicionar links
-                                    </button>
-                                </div>
-
-                                <!-- bloco que abre/fecha -->
-                                <div id="linksPrivacidade" class="collapse mt-2">
-                                    <div class="row g-3">
-                                        <div class="col-12">
-                                            <label for="urlPolitica" class="form-label mt-10">
-                                                Insira sua URL da <strong>Política de Privacidade</strong>
-                                            </label>
-                                            <input type="url" id="urlPolitica" name="urlPolitica" class="form-control"
-                                                required placeholder="https://suaempresa.com.br/privacidade">
-                                        </div>
-
-                                        <div class="col-12">
-                                            <label for="urlTermos" class="form-label">
-                                                Insira sua URL dos <strong>Termos de Serviço</strong>
-                                            </label>
-                                            <input type="url" id="urlTermos" name="urlTermos" class="form-control"
-                                                required placeholder="https://suaempresa.com.br/termos">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Coluna DIREITA: reserva para pré-visualização (celular) -->
-                    <!-- Coluna DIREITA: pré-visualização (celular) -->
-                    <!-- Coluna DIREITA: pré-visualização (celular) -->
-                    <!-- Coluna DIREITA: pré-visualização (celular) -->
-                    <div class="col-12 col-lg-6">
-                        <div class="p-3 p-md-4 col-previsao">
-
-                            <!-- Controles -->
-
-                            <div class="controles-simulador d-flex justify-content-between align-items-center mb-40">
-                                <div class="controles-top">
-                                <div class="controle-os" role="tablist" aria-label="Sistema">
-                                    <input type="radio" name="os" id="sim-os-android" checked>
-                                    <label for="sim-os-android">Android</label>
-                                    <input type="radio" name="os" id="sim-os-ios">
-                                    <label for="sim-os-ios">iOS</label>
-                                </div>
-
-                                <div class="controle-tema" aria-label="Tema da tela">
-                                    <span class="me-2 text-white">Claro</span>
-                                    <label class="switch mb-0">
-                                        <input type="checkbox" id="sim-toggle-tema">
-                                        <span class="alavanca"></span>
-                                    </label>
-                                    <span class="ms-2 text-white">Escuro</span>
-                                </div>
-                                </div>
-                            </div>
-
-                            <!-- Aparelho -->
-                            <div class="telefone-sim" data-os="android" data-tema="claro">
-                                <div class="moldura">
-
-                                    <span class="side-button side-vol1"></span>
-                                    <span class="side-button side-vol2"></span>
-                                    <span class="side-button side-power"></span>
-
-                                    <!-- alto-falante + câmera frontal estilo Android -->
-                                    <div class="notch-android" aria-hidden="true">
-                                        <span class="cam"></span>
-                                    </div>
-                                    <div class="ios-top-handle"></div>
-
-                                    <!-- Status -->
-                                    <div class="status-bar">
-                                        <div class="lado-esq">
-                                            <span class="hora-ao-vivo">12:00</span>
-                                        </div>
-                                        <div class="lado-centro ios">12:00</div>
-                                        <div class="lado-dir">
-                                            <svg class="ico sinal" viewBox="0 0 24 24" aria-hidden="true">
-                                                <rect x="3" y="14" width="3" height="7" rx="1" fill="currentColor">
-                                                </rect>
-                                                <rect x="8" y="10" width="3" height="11" rx="1" fill="currentColor">
-                                                </rect>
-                                                <rect x="13" y="6" width="3" height="15" rx="1" fill="currentColor">
-                                                </rect>
-                                                <rect x="18" y="2" width="3" height="19" rx="1" fill="currentColor">
-                                                </rect>
-                                            </svg>
-                                            <svg class="ico wifi" viewBox="0 0 24 24" aria-hidden="true">
-                                                <path d="M2 8a14 14 0 0 1 20 0" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" />
-                                                <path d="M5 11a10 10 0 0 1 14 0" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" />
-                                                <path d="M8.5 14.5a6 6 0 0 1 7 0" fill="none" stroke="currentColor"
-                                                    stroke-width="2" stroke-linecap="round" />
-                                                <circle cx="12" cy="18" r="1.5" fill="currentColor" />
-                                            </svg>
-                                            <svg class="ico bateria" viewBox="0 0 36 18" aria-hidden="true">
-                                                <rect x="1" y="3" width="30" height="12" rx="3" ry="3" fill="none"
-                                                    stroke="currentColor" stroke-width="2" />
-                                                <rect x="33" y="7" width="2" height="4" rx="1" fill="currentColor" />
-                                                <rect class="nivel" x="3" y="5" width="22" height="8" rx="2"
-                                                    fill="currentColor" />
-                                            </svg>
-                                        </div>
-                                    </div>
-
-                                    <!-- iOS dynamic island -->
-                                    <div class="notch-ios"></div>
-
-                                    <!-- TELA -->
-                                    <div class="tela">
-
-                                        <!-- ========== ANDROID (como já estava) ========== -->
-                                        <div class="android-page">
-                                            <figure class="banner">
-                                                <img class="banner-img" alt="" hidden>
-                                                <div class="banner-fake">BANNER</div>
-
-                                                <!-- Título estático dentro do banner -->
-                                                <div class="banner-toptext" aria-hidden="true">
-                                                    <svg class="ico-seta" viewBox="0 0 24 24" aria-hidden="true">
-                                                        <path d="M20 12H7" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round" />
-                                                        <path d="M12 6L6 12L12 18" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg>
-                                                    <span class="titulo">Informações e opções</span>
-                                                </div>
-
-                                                <img class="avatar"
-                                                    src="https://dummyimage.com/92x92/111/fff.png&text=SC"
-                                                    alt="Logo do agente">
-                                            </figure>
-
-                                            <!-- iOS hero antigo (não usado no Android) -->
-                                            <div class="ios-hero" hidden>
-                                                <img class="ios-logo"
-                                                    src="https://dummyimage.com/96x96/111/fff.png&text=SC" alt="Logo">
-                                            </div>
-
-                                            <!-- Cabeçalho de nome/descrição -->
-                                            <div class="cabeca">
-                                                <h4 class="pv-nome">Nome</h4>
-                                                <p class="pv-descricao">Descrição do agente RCS aqui</p>
-                                            </div>
-
-                                            <!-- Ações -->
-                                            <div class="acoes-icones">
-                                                <a class="acao">
-                                                    <svg viewBox="0 0 24 24" class="ico-ac">
-                                                        <path
-                                                            d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h3.09a1 1 0 0 1 1 .75l1 3.49a1 1 0 0 1-.29 1L8.7 9.7a16 16 0 0 0 5.6 5.6l1.46-1.1a1 1 0 0 1 1-.14l3.49 1a1 1 0 0 1 .75 1.06Z"
-                                                            fill="currentColor" />
-                                                    </svg><span>Ligar</span>
-                                                </a>
-                                                <a class="acao">
-                                                    <svg viewBox="0 0 24 24" class="ico-ac">
-                                                        <path
-                                                            d="M12 3a9 9 0 1 0 9 9A9 9 0 0 0 12 3Zm0 0c-2.5 0-4.5 4-4.5 9s2 9 4.5 9 4.5-4 4.5-9-2-9-4.5-9Zm-7.8 9h15.6"
-                                                            fill="none" stroke="currentColor" stroke-width="2" />
-                                                    </svg><span>Site</span>
-                                                </a>
-                                                <a class="acao">
-                                                    <svg viewBox="0 0 24 24" class="ico-ac">
-                                                        <path
-                                                            d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
-                                                            fill="none" stroke="currentColor" stroke-width="2" />
-                                                    </svg><span>Enviar e-mail</span>
-                                                </a>
-                                            </div>
-
-                                            <!-- Abas -->
-                                            <div class="abas">
-                                                <span class="aba aba-infos ativa">Informações</span>
-                                                <span class="aba aba-opcoes">Opções</span>
-                                            </div>
-
-                                            <!-- PAINEL: Informações -->
-                                            <div class="painel painel-infos">
-                                                <ul class="lista-info">
-                                                    <li>
-                                                        <svg viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h3.09a1 1 0 0 1 1 .75l1 3.49a1 1 0 0 1-.29 1L8.7 9.7a16 16 0 0 0 5.6 5.6l1.46-1.1a1 1 0 0 1 1-.14l3.49 1a1 1 0 0 1 .75 1.06Z"
-                                                                fill="currentColor" />
-                                                        </svg>
-                                                        <div><strong class="pv-telefone">(00)
-                                                                0000-0000</strong><small>Telefone</small></div>
-                                                    </li>
-                                                    <li>
-                                                        <svg viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M12 3a9 9 0 1 0 9 9A9 9 0 0 0 12 3Zm0 0c-2.5 0-4.5 4-4.5 9s2 9 4.5 9 4.5-4 4.5-9-2-9-4.5-9Zm-7.8 9h15.6"
-                                                                fill="none" stroke="currentColor" stroke-width="2" />
-                                                        </svg>
-                                                        <div><strong
-                                                                class="pv-site">seusite.com.br</strong><small>Site</small>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <svg viewBox="0 0 24 24">
-                                                            <path
-                                                                d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
-                                                                fill="none" stroke="currentColor" stroke-width="2" />
-                                                        </svg>
-                                                        <div><strong
-                                                                class="pv-email">email@suaempresa.com.br</strong><small>E-mail</small>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- PAINEL: Opções (Android) -->
-                                            <div class="painel painel-opcoes" hidden>
-                                                <div class="op-titulo">Notificações</div>
-                                                <div class="op-legenda">Empresa</div>
-                                                <ul class="op-lista">
-                                                    <li class="op-item">Bloquear e denunciar spam</li>
-                                                    <li class="op-item opt-politica" hidden>Ver a política de
-                                                        privacidade</li>
-                                                    <li class="op-item opt-termos" hidden>Ver os Termos de Serviço</li>
-                                                    <li class="op-item">Saiba mais</li>
-                                                </ul>
-                                            </div>
-
-                                            <!-- Barra de navegação Android -->
-                                            <div class="nav-android" aria-hidden="true">
-                                                <div class="nav-btn voltar" title="Voltar">
-                                                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                                                        <path d="M15 19 8 12l7-7" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg>
-                                                </div>
-                                                <div class="nav-btn home" title="Início" aria-hidden="true">
-                                                    <span class="home-circ"></span>
-                                                </div>
-                                                <div class="nav-btn recentes" title="Recentes" aria-hidden="true">
-                                                    <span class="barra"></span><span class="barra"></span><span
-                                                        class="barra"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- ========== /ANDROID ========== -->
-
-                                        <!-- ========== iOS (novo, idêntico ao print) ========== -->
-                                        <div class="ios-page" hidden>
-                                            <!-- seta (estática) -->
-                                            <div class="ios-topbar" aria-hidden="true">
-                                                <span class="ios-back">
-                                                    <svg viewBox="0 0 24 24">
-                                                        <path d="M20 12H7" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round" />
-                                                        <path d="M12 6L6 12L12 18" fill="none" stroke="currentColor"
-                                                            stroke-width="2" stroke-linecap="round"
-                                                            stroke-linejoin="round" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-
-                                            <!-- hero/title -->
-                                            <div class="ios-hero-header">
-                                                <img class="ios-appicon pv-logo"
-                                                    src="https://dummyimage.com/128x128/0b0f14/ffffff.png&text=SC"
-                                                    alt="App icon">
-                                                <h1 class="ios-title pv-nome">Nome</h1>
-                                                <div class="ios-subtitle pv-operadora"
-                                                    data-default="Verificado por Vivo">Verificado por Vivo</div>
-                                            </div>
-
-                                            <!-- switches -->
-                                            <div class="ios-card">
-                                                <div class="ios-row">
-                                                    <span>Ocultar Alertas</span>
-                                                    <label class="ios-switch"><input type="checkbox"><i></i></label>
-                                                </div>
-                                                <div class="ios-divider"></div>
-                                                <div class="ios-row">
-                                                    <span>Recibos de Leitura</span>
-                                                    <label class="ios-switch"><input type="checkbox"
-                                                            checked><i></i></label>
-                                                </div>
-                                            </div>
-
-                                            <!-- Sobre -->
-                                            <h3 class="ios-section">Sobre</h3>
-                                            <div class="ios-card ios-about">
-                                                <p class="pv-descricao">Descrição do agente aqui…</p>
-                                            </div>
-
-                                            <!-- Detalhes -->
-                                            <h3 class="ios-section">Detalhes</h3>
-                                            <div class="ios-card ios-details">
-                                                <div class="ios-detail-item">
-                                                    <div class="ios-detail-label">Site</div>
-                                                    <div class="ios-link">shortcode.com.br</div>
-                                                </div>
-                                                <div class="ios-divider"></div>
-
-                                                <div class="ios-detail-item">
-                                                    <div class="ios-detail-label">Telefone</div>
-                                                    <div class="ios-link">+55 (47) 3285-8808</div>
-                                                </div>
-                                                <div class="ios-divider"></div>
-
-                                                <div class="ios-detail-item">
-                                                    <div class="ios-detail-label">E-mail</div>
-                                                    <div class="ios-link">sms@shortcode.com.br</div>
-                                                </div>
-                                                <div class="ios-divider"></div>
-
-                                                <div class="ios-detail-item">
-                                                    <div class="ios-detail-label">Termos e Condições</div>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="ios-home-indicator"></div>
-
-                                        </div>
-
-                                        <!-- ========== /iOS ========== -->
-
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                    <!-- Ações -->
-                    <div class="d-flex justify-content-end gap-2 mb-30">
-                        <a href="etapa-2.html" class="botao-voltar">Voltar</a>
-                        <a href="#" class="botao botao-verde botao-borda">Salvar</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
+  <!-- ===================== ÁREA PRINCIPAL ===================== -->
+  <div class="area">
+    <!-- Efeitos de fundo -->
+    <div class="efeitos" aria-hidden="true">
+      <div class="faixa"></div>
+      <div class="bolha b1"></div>
+      <div class="bolha b2"></div>
+      <div class="bolha b3"></div>
     </div>
-    <footer class="rodape">
-        © <span id="ano"></span> Short Code — Introdução RCS
-    </footer>
+
+    <!-- Topo com logo à esquerda e tabs à direita -->
+    <header class="topo">
+      <a class="marca-topo" href="#">
+        <img src="imagem/logo/logo-short-code-black.svg" alt="Short Code">
+      </a>
+      <nav class="tabs">
+        <a class="tab" href="#">SMS</a>
+        <a class="tab tab-ativa" href="#">RCS</a>
+      </nav>
+    </header>
+
+    <!-- Conteúdo central dentro de um container -->
+    <div id="particles-js"></div>
+    <!-- ============ ETAPA: FORMULÁRIO DO AGENTE RCS ============ -->
+    <section id="etapa-agente-rcs" class="secao-rcs py-4 py-lg-5 ">
+      <div class="container">
+
+
+        <div class="row g-4 align-items-start cartao-vidro">
+
+
+          <!-- Coluna ESQUERDA: formulário -->
+          <div class="col-12 col-lg-6">
+            <div class="p-3 p-md-4">
+              <h2 class="h4 mb-2">Solicitar novo agente RCS</h2>
+              <p class="texto-apoio small mb-3">
+                Preencha as informações do agente. Esses dados serão usados no perfil RCS.
+              </p>
+
+              <form id="form-agente-rcs" novalidate>
+                <!-- Nome (máx. 18) -->
+                <div class="py-10">
+                  <label for="nomeAgente" class="texto-formulario mb-10">Nome do Agente </label><span
+                    class="texto-formulario-informativo"> (Máximo de 18 caracteres.)</span>
+                  <input type="text" id="nomeAgente" name="nomeAgente" maxlength="18" class="form-control"
+                    placeholder="Ex.: Short Code" required>
+
+                </div>
+
+                <!-- Descrição (máx. 100) -->
+                <div class="py-10">
+                  <label for="descAgente" class="texto-formulario mb-10">Descrição</label><span
+                    class="texto-formulario-informativo"> (Até 100 caracteres.)</span>
+                  <textarea style="height: 35px;" id="descAgente" name="descAgente" maxlength="100" rows="2"
+                    class="form-control" placeholder="Ex.: Atendimento e novidades por RCS."></textarea>
+                </div>
+
+                <!-- Telefone (SAC) -->
+                <div class="py-10">
+                  <label for="telSac" class="texto-formulario mb-10">Telefone </label><span
+                    class="texto-formulario-informativo"> (Use um número válido de
+                    atendimento.)</span>
+                  <input type="tel" id="telSac" name="telSac" class="form-control" placeholder="Ex.: (11) 90000-0000">
+
+                </div>
+
+                <!-- Site oficial -->
+                <div class="py-10">
+                  <label for="siteOficial" class="texto-formulario mb-10">Site oficial</label>
+                  <input type="url" id="siteOficial" name="siteOficial" class="form-control" required
+                    placeholder="https://suaempresa.com.br">
+                </div>
+
+                <!-- E-mail (SAC) -->
+                <div class="py-10">
+                  <label for="emailSac" class="texto-formulario mb-10">E-mail </label>
+                  <input type="email" id="emailSac" name="emailSac" class="form-control" required
+                    placeholder="atendimento@suaempresa.com.br">
+                </div>
+
+                <!-- Logos -->
+                <div class="row g-3 py-10">
+                  <div class="col-12">
+                    <label for="logoQuadrada" class="texto-formulario mb-10">Logo
+                      (224×224px)</label><span class="texto-formulario-informativo"> (PNG/JPG/SVG.
+                      Fundo transparente recomendado.)</span>
+                    <input type="file" id="logoQuadrada" name="logoQuadrada" class="form-control"
+                      accept=".png,.jpg,.jpeg,.svg">
+
+                  </div>
+                  <div class="col-12 py-10">
+                    <label for="logoBanner" class="texto-formulario mb-10">Banner
+                      (1440×448px)</label>
+                    <input type="file" id="logoBanner" name="logoBanner" class="form-control"
+                      accept=".png,.jpg,.jpeg,.svg">
+                  </div>
+                </div>
+
+
+                <!-- URL da política de privacidade -->
+
+                <div class="linha-flex  mb-2">
+                  <h6 class="m-0 texto-formulario s-24">Privacidade & Termos</h6>
+
+                  <button id="btnAdicionarLinks" class="btn  botao-flexbox w-800" type="button"
+                    data-bs-toggle="collapse" data-bs-target="#linksPrivacidade" aria-expanded="false"
+                    aria-controls="linksPrivacidade">
+                    Adicionar links
+                  </button>
+                </div>
+
+                <!-- bloco que abre/fecha -->
+                <div id="linksPrivacidade" class="collapse mt-2">
+                  <div class="row g-3">
+                    <div class="col-12">
+                      <label for="urlPolitica" class="form-label mt-10">
+                        Insira sua URL da <strong>Política de Privacidade</strong>
+                      </label>
+                      <input type="url" id="urlPolitica" name="urlPolitica" class="form-control" required
+                        placeholder="https://suaempresa.com.br/privacidade">
+                    </div>
+
+                    <div class="col-12">
+                      <label for="urlTermos" class="form-label">
+                        Insira sua URL dos <strong>Termos de Serviço</strong>
+                      </label>
+                      <input type="url" id="urlTermos" name="urlTermos" class="form-control" required
+                        placeholder="https://suaempresa.com.br/termos">
+                    </div>
+                  </div>
+                </div>
+
+
+              </form>
+            </div>
+          </div>
+
+          <!-- Coluna DIREITA: pré-visualização (celular) -->
+
+          <div class="col-12 col-lg-6">
+            <div class="p-3 p-md-4 col-previsao">
+
+              <!-- Controles -->
+
+              <div class="controles-simulador d-flex justify-content-between align-items-center mb-40">
+                <div class="controles-top">
+                  <div class="controle-os" role="tablist" aria-label="Sistema">
+                    <input type="radio" name="os" id="sim-os-android" checked>
+                    <label for="sim-os-android">Android</label>
+                    <input type="radio" name="os" id="sim-os-ios">
+                    <label for="sim-os-ios">iOS</label>
+                  </div>
+
+                  <div class="controle-tema" aria-label="Tema da tela">
+                    <span class="me-2 text-white">Claro</span>
+                    <label class="switch mb-0">
+                      <input type="checkbox" id="sim-toggle-tema">
+                      <span class="alavanca"></span>
+                    </label>
+                    <span class="ms-2 text-white">Escuro</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Aparelho -->
+              <div class="telefone-sim" data-os="android" data-tema="claro">
+                <div class="moldura">
+
+                  <span class="side-button side-vol1"></span>
+                  <span class="side-button side-vol2"></span>
+                  <span class="side-button side-power"></span>
+
+                  <!-- alto-falante + câmera frontal estilo Android -->
+                  <div class="notch-android" aria-hidden="true">
+                    <span class="cam"></span>
+                  </div>
+                  <div class="ios-top-handle"></div>
+
+                  <!-- Status -->
+                  <div class="status-bar">
+                    <div class="lado-esq">
+                      <span class="hora-ao-vivo">12:00</span>
+                    </div>
+                    <div class="lado-centro ios">12:00</div>
+                    <div class="lado-dir">
+                      <svg class="ico sinal" viewBox="0 0 24 24" aria-hidden="true">
+                        <rect x="3" y="14" width="3" height="7" rx="1" fill="currentColor">
+                        </rect>
+                        <rect x="8" y="10" width="3" height="11" rx="1" fill="currentColor">
+                        </rect>
+                        <rect x="13" y="6" width="3" height="15" rx="1" fill="currentColor">
+                        </rect>
+                        <rect x="18" y="2" width="3" height="19" rx="1" fill="currentColor">
+                        </rect>
+                      </svg>
+                      <svg class="ico wifi" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M2 8a14 14 0 0 1 20 0" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" />
+                        <path d="M5 11a10 10 0 0 1 14 0" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" />
+                        <path d="M8.5 14.5a6 6 0 0 1 7 0" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" />
+                        <circle cx="12" cy="18" r="1.5" fill="currentColor" />
+                      </svg>
+                      <svg class="ico bateria" viewBox="0 0 36 18" aria-hidden="true">
+                        <rect x="1" y="3" width="30" height="12" rx="3" ry="3" fill="none" stroke="currentColor"
+                          stroke-width="2" />
+                        <rect x="33" y="7" width="2" height="4" rx="1" fill="currentColor" />
+                        <rect class="nivel" x="3" y="5" width="22" height="8" rx="2" fill="currentColor" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- iOS dynamic island -->
+                  <div class="notch-ios"></div>
+
+                  <!-- TELA -->
+                  <div class="tela">
+                    <!-- ========== ANDROID (como já estava) ========== -->
+                    <div class="android-page screen ativo "> <!-- screen 0 (padrão, visível) -->
+
+                      <figure class="banner">
+                        <img class="banner-img" alt="" hidden>
+                        <div class="banner-fake">BANNER</div>
+
+                        <!-- Título estático dentro do banner -->
+                        <div class="banner-toptext btn-next" aria-hidden="true">
+                          <svg class="ico-seta" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20 12H7" fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" />
+                            <path d="M12 6L6 12L12 18" fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                          <span class="titulo">Informações e opções</span>
+                        </div>
+
+                        <img class="avatar" src="https://dummyimage.com/92x92/111/fff.png&text=SC" alt="Logo do agente">
+                      </figure>
+
+                      <!-- iOS hero antigo (não usado no Android) -->
+                      <div class="ios-hero" hidden>
+                        <img class="ios-logo" src="https://dummyimage.com/96x96/111/fff.png&text=SC" alt="Logo">
+                      </div>
+
+                      <!-- Cabeçalho de nome/descrição -->
+                      <div class="cabeca">
+                        <h4 class="pv-nome">Nome</h4>
+                        <p class="pv-descricao">Descrição do agente RCS aqui</p>
+                      </div>
+
+                      <!-- Ações -->
+                      <div class="acoes-icones">
+                        <a class="acao">
+                          <svg viewBox="0 0 24 24" class="ico-ac">
+                            <path
+                              d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h3.09a1 1 0 0 1 1 .75l1 3.49a1 1 0 0 1-.29 1L8.7 9.7a16 16 0 0 0 5.6 5.6l1.46-1.1a1 1 0 0 1 1-.14l3.49 1a1 1 0 0 1 .75 1.06Z"
+                              fill="currentColor" />
+                          </svg><span>Ligar</span>
+                        </a>
+                        <a class="acao">
+                          <svg viewBox="0 0 24 24" class="ico-ac">
+                            <path
+                              d="M12 3a9 9 0 1 0 9 9A9 9 0 0 0 12 3Zm0 0c-2.5 0-4.5 4-4.5 9s2 9 4.5 9 4.5-4 4.5-9-2-9-4.5-9Zm-7.8 9h15.6"
+                              fill="none" stroke="currentColor" stroke-width="2" />
+                          </svg><span>Site</span>
+                        </a>
+                        <a class="acao">
+                          <svg viewBox="0 0 24 24" class="ico-ac">
+                            <path d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
+                              fill="none" stroke="currentColor" stroke-width="2" />
+                          </svg><span>Enviar e-mail</span>
+                        </a>
+                      </div>
+
+                      <!-- Abas -->
+                      <div class="abas">
+                        <span class="aba aba-infos ativa">Informações</span>
+                        <span class="aba aba-opcoes">Opções</span>
+                      </div>
+
+                      <!-- PAINEL: Informações -->
+                      <div class="painel painel-infos">
+                        <ul class="lista-info">
+                          <li>
+                            <svg viewBox="0 0 24 24">
+                              <path
+                                d="M22 16.92V20a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 5.18 2 2 0 0 1 5 3h3.09a1 1 0 0 1 1 .75l1 3.49a1 1 0 0 1-.29 1L8.7 9.7a16 16 0 0 0 5.6 5.6l1.46-1.1a1 1 0 0 1 1-.14l3.49 1a1 1 0 0 1 .75 1.06Z"
+                                fill="currentColor" />
+                            </svg>
+                            <div><strong class="pv-telefone">(00) 0000-0000</strong><small>Telefone</small></div>
+                          </li>
+                          <li>
+                            <svg viewBox="0 0 24 24">
+                              <path
+                                d="M12 3a9 9 0 1 0 9 9A9 9 0 0 0 12 3Zm0 0c-2.5 0-4.5 4-4.5 9s2 9 4.5 9 4.5-4 4.5-9-2-9-4.5-9Zm-7.8 9h15.6"
+                                fill="none" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                            <div><strong class="pv-site">seusite.com.br</strong><small>Site</small></div>
+                          </li>
+                          <li>
+                            <svg viewBox="0 0 24 24">
+                              <path
+                                d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
+                                fill="none" stroke="currentColor" stroke-width="2" />
+                            </svg>
+                            <div><strong class="pv-email">email@suaempresa.com.br</strong><small>E-mail</small></div>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <!-- PAINEL: Opções (Android) -->
+                      <div class="painel painel-opcoes" hidden>
+                        <div class="op-titulo">Notificações</div>
+                        <div class="op-legenda">Empresa</div>
+                        <ul class="op-lista">
+                          <li class="op-item">Bloquear e denunciar spam</li>
+                          <li class="op-item opt-politica" hidden>Ver a política de privacidade</li>
+                          <li class="op-item opt-termos" hidden>Ver os Termos de Serviço</li>
+                          <li class="op-item">Saiba mais</li>
+                        </ul>
+                      </div>
+
+                      <!-- Barra de navegação Android -->
+                      <div class="nav-android" aria-hidden="true">
+                        <div class="nav-btn voltar" title="Voltar">
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15 19 8 12l7-7" fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </div>
+                        <div class="nav-btn home" title="Início" aria-hidden="true">
+                          <span class="home-circ"></span>
+                        </div>
+                        <div class="nav-btn recentes" title="Recentes" aria-hidden="true">
+                          <span class="barra"></span><span class="barra"></span><span class="barra"></span>
+                        </div>
+                      </div>
+
+                    </div> <!-- ✅ fecha .android-page AQUI -->
+
+                    <!-- ===== TELA 2: Android — Lista de mensagens ===== -->
+                    <div class="android-mensagens screen fadeInUp">
+                      <div class="android-app">
+                        <!-- Topo: G + Mensagens + busca + avatar -->
+                        <header class="appbar">
+                          <div class="icone-google-css" aria-hidden="true">
+                            <img src="/imagem/icone-google.png" alt="">
+                          </div>
+                          <h1 class="titulo-app">Mensagens</h1>
+                          <div class="acoes">
+                            <button class="btn-ico" title="Pesquisar" aria-label="Pesquisar">
+                              <svg viewBox="0 0 24 24">
+                                <path d="M21 21l-4.3-4.3M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" fill="none"
+                                  stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                              </svg>
+                            </button>
+                            <svg class="avatar-perfil" viewBox="0 0 24 24" aria-hidden="true">
+                              <path
+                                d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5C21 16.5 17 14 12 14Z"
+                                fill="currentColor" />
+                            </svg>
+                          </div>
+                        </header>
+
+                        <!-- Folha inferior com lista -->
+                        <section class="sheet">
+                          <div class="list">
+                            <!-- PRIMEIRO item (AGENTE) — vem do formulário -->
+                            <article class="msg-item agente" data-origem="form" data-goto="3">
+                              <div class="avatar-box">
+                                <img class="avatar logo" src="" alt="Logo do agente" hidden>
+                                <div class="avatar user" aria-hidden="true">
+                                  <svg class="ico-user" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path
+                                      d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5C21 16.5 17 14 12 14Z"
+                                      fill="currentColor" />
+                                  </svg>
+                                </div>
+                                <span class="rcs-badge" title="RCS verificado"></span>
+                              </div>
+                              <div class="msg-body">
+                                <div class="titulo agente-nome">Short Code</div>
+                                <div class="sub">Short Code – SMS </div>
+                              </div>
+                              <div class="hora">agora</div>
+                            </article>
+                          </div>
+
+                          <!-- FAB opcional -->
+                          <button class="fab" aria-label="Nova conversa" title="Nova conversa">
+                            <svg viewBox="0 0 24 24">
+                              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                fill="none" />
+                            </svg>
+                          </button>
+                        </section>
+                      </div>
+
+                      <div style="bottom: 0px;" class="nav-android" aria-hidden="true">
+                        <div class="nav-btn voltar" title="Voltar">
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15 19 8 12l7-7" fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </div>
+                        <div class="nav-btn home" title="Início" aria-hidden="true">
+                          <span class="home-circ"></span>
+                        </div>
+                        <div class="nav-btn recentes" title="Recentes" aria-hidden="true">
+                          <span class="barra"></span><span class="barra"></span><span class="barra"></span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- ========== ANDROID — TELA 3: Conversa com cards (carrossel) ========== -->
+                    <div class="android-conversa screen fadeInUp">
+                      <div class="android-app">
+
+                        <!-- AppBar (estático) -->
+                        <header class="appbar conv-appbar">
+
+                          <span class="btn-ico btn-prev" aria-hidden="true">
+                            <svg class="ico-seta" viewBox="0 0 24 24" aria-hidden="true">
+                              <path d="M20 12H7" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+                              <path d="M12 6L6 12L12 18" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </span>
+
+                          <!-- bloco ESQUERDA: só o avatar pequeno -->
+                          <div class="conv-title">
+                            <div class="conv-avatar conv-appbar">
+                              <img class="avatar logo conv-logo conv-appbar" src="" alt="Logo">
+                              <div class="avatar user conv-user" aria-hidden="true">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                  <path
+                                    d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-5 0-9 2.5-9 5.5V22h18v-2.5C21 16.5 17 14 12 14Z"
+                                    fill="currentColor" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+
+                          <h1 class="titulo-app conv-nome">Short Code</h1>
+
+                          <!-- ações à direita -->
+                          <div class="acoes" aria-hidden="true">
+                            <span class="btn-ico" title="Verificado">
+                              <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2 3 7v7c0 5 9 8 9 8s9-3 9-8V7l-9-5Z" fill="currentColor" opacity=".2" />
+                                <path d="m10 13 5-5M10 13l-2-2" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" />
+                              </svg>
+                            </span>
+                            <span class="btn-ico" title="Mais opções">
+                              <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="5" cy="12" r="2" />
+                                <circle cx="12" cy="12" r="2" />
+                                <circle cx="19" cy="12" r="2" />
+                              </svg>
+                            </span>
+                          </div>
+                        </header>
+
+                        <!-- Hero -->
+                        <section class="conv-hero">
+                          <div class="center-logo-wrap">
+                            <img class="center-logo" src="" alt="Logo grande">
+                            <svg class="verified-badge" viewBox="0 0 24 24" aria-hidden="true">
+                              <path d="M12 2 3 7v7c0 5 9 8 9 8s9-3 9-8V7l-9-5Z" fill="currentColor" opacity="1" />
+                              <path d="M16 10.5l-4.2 4.2L9 12.9" fill="none" stroke="#fff" stroke-width="2"
+                                stroke-linecap="round" />
+                            </svg>
+                          </div>
+                          <p class="conv-desc pv-descricao">Descrição do agente RCS aqui</p>
+                        </section>
+
+
+                        <!-- Hora do chat -->
+                        <div class="conv-time hora-ao-vivo">10:21</div>
+
+                        <!-- Carrossel -->
+                        <section class="conv-cards">
+                          <div class="cards-scroll">
+                            <article class="rcs-card">
+                              <img class="card-img" src="/imagem/banner/banner-sms.jpg" alt="">
+                              <div class="card-body">
+                                <h3 class="card-title">Short Code – SMS</h3>
+                                <p class="card-text">
+                                  Canal de mais abrangente! O serviço de SMS em massa chega em seu cliente mesmo sem
+                                  internet.
+                                  Sendo hoje o canal que mais entrega sua mensagem!
+                                </p>
+                                <span class="card-cta" aria-hidden="true">
+                                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                      transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                      <linearGradient id="SVGID_1" gradientUnits="userSpaceOnUse" x1="45.1039"
+                                        y1="72.9567" x2="44.8639" y2="8.3967">
+                                        <stop offset="0%" style="stop-color:rgb(0,204,62);stop-opacity: 1" />
+                                        <stop offset="100%" style="stop-color:rgb(1,237,94);stop-opacity: 1" />
+                                      </linearGradient>
+                                      <path
+                                        d="M 73.26 90 H 16.74 C 7.495 90 0 82.505 0 73.26 V 16.74 C 0 7.495 7.495 0 16.74 0 h 56.52 C 82.505 0 90 7.495 90 16.74 v 56.52 C 90 82.505 82.505 90 73.26 90 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: url(#SVGID_1); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                      <path
+                                        d="M 37.403 32.564 c -0.541 -1.201 -1.11 -1.226 -1.624 -1.247 L 34.396 31.3 c -0.481 0 -1.263 0.181 -1.924 0.903 c -0.661 0.722 -2.526 2.468 -2.526 6.018 c 0 3.55 2.586 6.981 2.946 7.463 c 0.36 0.482 4.992 8 12.327 10.892 c 6.095 2.404 7.335 1.926 8.659 1.806 c 1.324 -0.12 4.269 -1.745 4.87 -3.43 c 0.601 -1.685 0.601 -3.129 0.421 -3.43 c -0.18 -0.302 -0.661 -0.481 -1.384 -0.842 c -0.722 -0.361 -4.269 -2.107 -4.931 -2.348 s -1.142 -0.361 -1.624 0.361 c -0.482 0.722 -1.863 2.347 -2.284 2.828 c -0.421 0.482 -0.842 0.542 -1.564 0.181 c -0.722 -0.361 -3.046 -1.123 -5.803 -3.581 c -2.145 -1.913 -3.593 -4.275 -4.015 -4.997 c -0.422 -0.722 -0.045 -1.113 0.317 -1.472 c 0.324 -0.323 0.721 -0.843 1.083 -1.264 c 0.361 -0.421 0.48 -0.722 0.721 -1.203 s 0.12 -0.903 -0.06 -1.264 C 39.446 37.56 38.044 33.991 37.403 32.564"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: evenodd; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                      <polygon
+                                        points="73.5,23.1 66.3,23.1 66.3,15.9 61.35,15.9 61.35,23.1 54.15,23.1 54.15,28.05 61.35,28.05 61.35,35.25 66.3,35.25 66.3,28.05 73.5,28.05 "
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform="  matrix(1 0 0 1 0 0) " />
+                                      <path
+                                        d="M 67.716 38.13 c 0.597 2.105 0.915 4.296 0.908 6.524 c 0 0 0 0 0 0 s 0 0 0 0 C 68.618 57.885 57.851 68.65 44.621 68.65 h -0.009 c -3.77 -0.002 -7.475 -0.888 -10.811 -2.574 c -0.477 -0.241 -0.945 -0.498 -1.406 -0.771 l -0.877 -0.52 l -9.085 2.382 l 2.425 -8.854 l -0.571 -0.908 c -2.404 -3.825 -3.676 -8.252 -3.669 -12.77 c 0.005 -13.23 10.772 -23.994 24.012 -23.994 c 2.394 -0.006 4.752 0.349 7 1.034 v -5.056 c -2.265 -0.562 -4.614 -0.853 -7.009 -0.854 c -15.919 0 -28.873 12.95 -28.88 28.868 c -0.006 5.066 1.324 10.044 3.855 14.433 l -4.097 14.96 l 15.309 -4.015 c 4.218 2.3 8.967 3.512 13.8 3.514 h 0.013 c 15.916 0 28.872 -12.953 28.879 -28.87 c 0.001 -2.225 -0.254 -4.41 -0.742 -6.526 H 67.716 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    </g>
+                                  </svg>
+                                  Entrar em contato
+                                </span>
+                              </div>
+                            </article>
+
+                            <article class="rcs-card">
+                              <img class="card-img" src="/imagem/banner/banner-rcs.jpg" alt="">
+                              <div class="card-body">
+                                <h3 class="card-title">Short code - RCS</h3>
+                                <p class="card-text">A comunicação da sua marca é nosso compromisso! <br>Gere mais valor
+                                  com mensagens da Short Code
+                                </p>
+                                <span class="card-cta" aria-hidden="true">
+                                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                      transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                      <linearGradient id="SVGID_1" gradientUnits="userSpaceOnUse" x1="45.1039"
+                                        y1="72.9567" x2="44.8639" y2="8.3967">
+                                        <stop offset="0%" style="stop-color:rgb(0,204,62);stop-opacity: 1" />
+                                        <stop offset="100%" style="stop-color:rgb(1,237,94);stop-opacity: 1" />
+                                      </linearGradient>
+                                      <path
+                                        d="M 73.26 90 H 16.74 C 7.495 90 0 82.505 0 73.26 V 16.74 C 0 7.495 7.495 0 16.74 0 h 56.52 C 82.505 0 90 7.495 90 16.74 v 56.52 C 90 82.505 82.505 90 73.26 90 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: url(#SVGID_1); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                      <path
+                                        d="M 37.403 32.564 c -0.541 -1.201 -1.11 -1.226 -1.624 -1.247 L 34.396 31.3 c -0.481 0 -1.263 0.181 -1.924 0.903 c -0.661 0.722 -2.526 2.468 -2.526 6.018 c 0 3.55 2.586 6.981 2.946 7.463 c 0.36 0.482 4.992 8 12.327 10.892 c 6.095 2.404 7.335 1.926 8.659 1.806 c 1.324 -0.12 4.269 -1.745 4.87 -3.43 c 0.601 -1.685 0.601 -3.129 0.421 -3.43 c -0.18 -0.302 -0.661 -0.481 -1.384 -0.842 c -0.722 -0.361 -4.269 -2.107 -4.931 -2.348 s -1.142 -0.361 -1.624 0.361 c -0.482 0.722 -1.863 2.347 -2.284 2.828 c -0.421 0.482 -0.842 0.542 -1.564 0.181 c -0.722 -0.361 -3.046 -1.123 -5.803 -3.581 c -2.145 -1.913 -3.593 -4.275 -4.015 -4.997 c -0.422 -0.722 -0.045 -1.113 0.317 -1.472 c 0.324 -0.323 0.721 -0.843 1.083 -1.264 c 0.361 -0.421 0.48 -0.722 0.721 -1.203 s 0.12 -0.903 -0.06 -1.264 C 39.446 37.56 38.044 33.991 37.403 32.564"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: evenodd; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                      <polygon
+                                        points="73.5,23.1 66.3,23.1 66.3,15.9 61.35,15.9 61.35,23.1 54.15,23.1 54.15,28.05 61.35,28.05 61.35,35.25 66.3,35.25 66.3,28.05 73.5,28.05 "
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform="  matrix(1 0 0 1 0 0) " />
+                                      <path
+                                        d="M 67.716 38.13 c 0.597 2.105 0.915 4.296 0.908 6.524 c 0 0 0 0 0 0 s 0 0 0 0 C 68.618 57.885 57.851 68.65 44.621 68.65 h -0.009 c -3.77 -0.002 -7.475 -0.888 -10.811 -2.574 c -0.477 -0.241 -0.945 -0.498 -1.406 -0.771 l -0.877 -0.52 l -9.085 2.382 l 2.425 -8.854 l -0.571 -0.908 c -2.404 -3.825 -3.676 -8.252 -3.669 -12.77 c 0.005 -13.23 10.772 -23.994 24.012 -23.994 c 2.394 -0.006 4.752 0.349 7 1.034 v -5.056 c -2.265 -0.562 -4.614 -0.853 -7.009 -0.854 c -15.919 0 -28.873 12.95 -28.88 28.868 c -0.006 5.066 1.324 10.044 3.855 14.433 l -4.097 14.96 l 15.309 -4.015 c 4.218 2.3 8.967 3.512 13.8 3.514 h 0.013 c 15.916 0 28.872 -12.953 28.879 -28.87 c 0.001 -2.225 -0.254 -4.41 -0.742 -6.526 H 67.716 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    </g>
+                                  </svg>
+                                  Entrar em contato
+                                </span>
+                              </div>
+                            </article>
+
+                            <article class="rcs-card">
+                              <img class="card-img" src="/imagem/banner/banner-whats.jpg" alt="">
+                              <div class="card-body">
+                                <h3 class="card-title">Short Code - WhatsApp oficial</h3>
+                                <p class="card-text">Conversar com seu cliente em canais oficias gera mais confiança com
+                                  sua marca! <br><br> Converse por um WhatsApp oficial</p>
+                                <span class="card-cta" aria-hidden="true">
+                                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                      transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                      <linearGradient id="SVGID_1" gradientUnits="userSpaceOnUse" x1="45.1039"
+                                        y1="72.9567" x2="44.8639" y2="8.3967">
+                                        <stop offset="0%" style="stop-color:rgb(0,204,62);stop-opacity: 1" />
+                                        <stop offset="100%" style="stop-color:rgb(1,237,94);stop-opacity: 1" />
+                                      </linearGradient>
+                                      <path
+                                        d="M 73.26 90 H 16.74 C 7.495 90 0 82.505 0 73.26 V 16.74 C 0 7.495 7.495 0 16.74 0 h 56.52 C 82.505 0 90 7.495 90 16.74 v 56.52 C 90 82.505 82.505 90 73.26 90 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: url(#SVGID_1); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                      <path
+                                        d="M 37.403 32.564 c -0.541 -1.201 -1.11 -1.226 -1.624 -1.247 L 34.396 31.3 c -0.481 0 -1.263 0.181 -1.924 0.903 c -0.661 0.722 -2.526 2.468 -2.526 6.018 c 0 3.55 2.586 6.981 2.946 7.463 c 0.36 0.482 4.992 8 12.327 10.892 c 6.095 2.404 7.335 1.926 8.659 1.806 c 1.324 -0.12 4.269 -1.745 4.87 -3.43 c 0.601 -1.685 0.601 -3.129 0.421 -3.43 c -0.18 -0.302 -0.661 -0.481 -1.384 -0.842 c -0.722 -0.361 -4.269 -2.107 -4.931 -2.348 s -1.142 -0.361 -1.624 0.361 c -0.482 0.722 -1.863 2.347 -2.284 2.828 c -0.421 0.482 -0.842 0.542 -1.564 0.181 c -0.722 -0.361 -3.046 -1.123 -5.803 -3.581 c -2.145 -1.913 -3.593 -4.275 -4.015 -4.997 c -0.422 -0.722 -0.045 -1.113 0.317 -1.472 c 0.324 -0.323 0.721 -0.843 1.083 -1.264 c 0.361 -0.421 0.48 -0.722 0.721 -1.203 s 0.12 -0.903 -0.06 -1.264 C 39.446 37.56 38.044 33.991 37.403 32.564"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: evenodd; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                      <polygon
+                                        points="73.5,23.1 66.3,23.1 66.3,15.9 61.35,15.9 61.35,23.1 54.15,23.1 54.15,28.05 61.35,28.05 61.35,35.25 66.3,35.25 66.3,28.05 73.5,28.05 "
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform="  matrix(1 0 0 1 0 0) " />
+                                      <path
+                                        d="M 67.716 38.13 c 0.597 2.105 0.915 4.296 0.908 6.524 c 0 0 0 0 0 0 s 0 0 0 0 C 68.618 57.885 57.851 68.65 44.621 68.65 h -0.009 c -3.77 -0.002 -7.475 -0.888 -10.811 -2.574 c -0.477 -0.241 -0.945 -0.498 -1.406 -0.771 l -0.877 -0.52 l -9.085 2.382 l 2.425 -8.854 l -0.571 -0.908 c -2.404 -3.825 -3.676 -8.252 -3.669 -12.77 c 0.005 -13.23 10.772 -23.994 24.012 -23.994 c 2.394 -0.006 4.752 0.349 7 1.034 v -5.056 c -2.265 -0.562 -4.614 -0.853 -7.009 -0.854 c -15.919 0 -28.873 12.95 -28.88 28.868 c -0.006 5.066 1.324 10.044 3.855 14.433 l -4.097 14.96 l 15.309 -4.015 c 4.218 2.3 8.967 3.512 13.8 3.514 h 0.013 c 15.916 0 28.872 -12.953 28.879 -28.87 c 0.001 -2.225 -0.254 -4.41 -0.742 -6.526 H 67.716 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    </g>
+                                  </svg>
+                                  Entrar em contato
+                                </span>
+                              </div>
+                            </article>
+                            <article class="rcs-card">
+                              <img class="card-img" src="/imagem/banner/banner-voz.jpg" alt="">
+                              <div class="card-body">
+                                <h3 class="card-title">Short Code - Voz</h3>
+                                <p class="card-text">Cada canal tem seu publico!Atinja o publico certo com nosso Torpedo
+                                  de voz inteligente,evitando gastos com caixa postal e mensagens automáticas!</p>
+                                <span class="card-cta" aria-hidden="true">
+                                  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                      transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                      <linearGradient id="SVGID_1" gradientUnits="userSpaceOnUse" x1="45.1039"
+                                        y1="72.9567" x2="44.8639" y2="8.3967">
+                                        <stop offset="0%" style="stop-color:rgb(0,204,62);stop-opacity: 1" />
+                                        <stop offset="100%" style="stop-color:rgb(1,237,94);stop-opacity: 1" />
+                                      </linearGradient>
+                                      <path
+                                        d="M 73.26 90 H 16.74 C 7.495 90 0 82.505 0 73.26 V 16.74 C 0 7.495 7.495 0 16.74 0 h 56.52 C 82.505 0 90 7.495 90 16.74 v 56.52 C 90 82.505 82.505 90 73.26 90 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: url(#SVGID_1); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                      <path
+                                        d="M 37.403 32.564 c -0.541 -1.201 -1.11 -1.226 -1.624 -1.247 L 34.396 31.3 c -0.481 0 -1.263 0.181 -1.924 0.903 c -0.661 0.722 -2.526 2.468 -2.526 6.018 c 0 3.55 2.586 6.981 2.946 7.463 c 0.36 0.482 4.992 8 12.327 10.892 c 6.095 2.404 7.335 1.926 8.659 1.806 c 1.324 -0.12 4.269 -1.745 4.87 -3.43 c 0.601 -1.685 0.601 -3.129 0.421 -3.43 c -0.18 -0.302 -0.661 -0.481 -1.384 -0.842 c -0.722 -0.361 -4.269 -2.107 -4.931 -2.348 s -1.142 -0.361 -1.624 0.361 c -0.482 0.722 -1.863 2.347 -2.284 2.828 c -0.421 0.482 -0.842 0.542 -1.564 0.181 c -0.722 -0.361 -3.046 -1.123 -5.803 -3.581 c -2.145 -1.913 -3.593 -4.275 -4.015 -4.997 c -0.422 -0.722 -0.045 -1.113 0.317 -1.472 c 0.324 -0.323 0.721 -0.843 1.083 -1.264 c 0.361 -0.421 0.48 -0.722 0.721 -1.203 s 0.12 -0.903 -0.06 -1.264 C 39.446 37.56 38.044 33.991 37.403 32.564"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: evenodd; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                      <polygon
+                                        points="73.5,23.1 66.3,23.1 66.3,15.9 61.35,15.9 61.35,23.1 54.15,23.1 54.15,28.05 61.35,28.05 61.35,35.25 66.3,35.25 66.3,28.05 73.5,28.05 "
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform="  matrix(1 0 0 1 0 0) " />
+                                      <path
+                                        d="M 67.716 38.13 c 0.597 2.105 0.915 4.296 0.908 6.524 c 0 0 0 0 0 0 s 0 0 0 0 C 68.618 57.885 57.851 68.65 44.621 68.65 h -0.009 c -3.77 -0.002 -7.475 -0.888 -10.811 -2.574 c -0.477 -0.241 -0.945 -0.498 -1.406 -0.771 l -0.877 -0.52 l -9.085 2.382 l 2.425 -8.854 l -0.571 -0.908 c -2.404 -3.825 -3.676 -8.252 -3.669 -12.77 c 0.005 -13.23 10.772 -23.994 24.012 -23.994 c 2.394 -0.006 4.752 0.349 7 1.034 v -5.056 c -2.265 -0.562 -4.614 -0.853 -7.009 -0.854 c -15.919 0 -28.873 12.95 -28.88 28.868 c -0.006 5.066 1.324 10.044 3.855 14.433 l -4.097 14.96 l 15.309 -4.015 c 4.218 2.3 8.967 3.512 13.8 3.514 h 0.013 c 15.916 0 28.872 -12.953 28.879 -28.87 c 0.001 -2.225 -0.254 -4.41 -0.742 -6.526 H 67.716 z"
+                                        style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                        transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                    </g>
+                                  </svg>
+                                  Entrar em contato
+                                </span>
+                              </div>
+                            </article>
+                          </div>
+                        </section>
+
+                        <!-- Composer (estático) -->
+                        <section class="conv-composer">
+                          <!-- chip só deste vira WhatsApp e vai pra direita -->
+                          <span class="chip-cta chip-cta--whats" title="Entrar em contato pelo WhatsApp">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
+                              <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;"
+                                transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                                <linearGradient id="SVGID_1" gradientUnits="userSpaceOnUse" x1="45.1039" y1="72.9567"
+                                  x2="44.8639" y2="8.3967">
+                                  <stop offset="0%" style="stop-color:rgb(0,204,62);stop-opacity: 1" />
+                                  <stop offset="100%" style="stop-color:rgb(1,237,94);stop-opacity: 1" />
+                                </linearGradient>
+                                <path
+                                  d="M 73.26 90 H 16.74 C 7.495 90 0 82.505 0 73.26 V 16.74 C 0 7.495 7.495 0 16.74 0 h 56.52 C 82.505 0 90 7.495 90 16.74 v 56.52 C 90 82.505 82.505 90 73.26 90 z"
+                                  style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: url(#SVGID_1); fill-rule: nonzero; opacity: 1;"
+                                  transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                <path
+                                  d="M 37.403 32.564 c -0.541 -1.201 -1.11 -1.226 -1.624 -1.247 L 34.396 31.3 c -0.481 0 -1.263 0.181 -1.924 0.903 c -0.661 0.722 -2.526 2.468 -2.526 6.018 c 0 3.55 2.586 6.981 2.946 7.463 c 0.36 0.482 4.992 8 12.327 10.892 c 6.095 2.404 7.335 1.926 8.659 1.806 c 1.324 -0.12 4.269 -1.745 4.87 -3.43 c 0.601 -1.685 0.601 -3.129 0.421 -3.43 c -0.18 -0.302 -0.661 -0.481 -1.384 -0.842 c -0.722 -0.361 -4.269 -2.107 -4.931 -2.348 s -1.142 -0.361 -1.624 0.361 c -0.482 0.722 -1.863 2.347 -2.284 2.828 c -0.421 0.482 -0.842 0.542 -1.564 0.181 c -0.722 -0.361 -3.046 -1.123 -5.803 -3.581 c -2.145 -1.913 -3.593 -4.275 -4.015 -4.997 c -0.422 -0.722 -0.045 -1.113 0.317 -1.472 c 0.324 -0.323 0.721 -0.843 1.083 -1.264 c 0.361 -0.421 0.48 -0.722 0.721 -1.203 s 0.12 -0.903 -0.06 -1.264 C 39.446 37.56 38.044 33.991 37.403 32.564"
+                                  style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: evenodd; opacity: 1;"
+                                  transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                                <polygon
+                                  points="73.5,23.1 66.3,23.1 66.3,15.9 61.35,15.9 61.35,23.1 54.15,23.1 54.15,28.05 61.35,28.05 61.35,35.25 66.3,35.25 66.3,28.05 73.5,28.05 "
+                                  style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                  transform="  matrix(1 0 0 1 0 0) " />
+                                <path
+                                  d="M 67.716 38.13 c 0.597 2.105 0.915 4.296 0.908 6.524 c 0 0 0 0 0 0 s 0 0 0 0 C 68.618 57.885 57.851 68.65 44.621 68.65 h -0.009 c -3.77 -0.002 -7.475 -0.888 -10.811 -2.574 c -0.477 -0.241 -0.945 -0.498 -1.406 -0.771 l -0.877 -0.52 l -9.085 2.382 l 2.425 -8.854 l -0.571 -0.908 c -2.404 -3.825 -3.676 -8.252 -3.669 -12.77 c 0.005 -13.23 10.772 -23.994 24.012 -23.994 c 2.394 -0.006 4.752 0.349 7 1.034 v -5.056 c -2.265 -0.562 -4.614 -0.853 -7.009 -0.854 c -15.919 0 -28.873 12.95 -28.88 28.868 c -0.006 5.066 1.324 10.044 3.855 14.433 l -4.097 14.96 l 15.309 -4.015 c 4.218 2.3 8.967 3.512 13.8 3.514 h 0.013 c 15.916 0 28.872 -12.953 28.879 -28.87 c 0.001 -2.225 -0.254 -4.41 -0.742 -6.526 H 67.716 z"
+                                  style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;"
+                                  transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round" />
+                              </g>
+                            </svg>
+                            Entrar em contato
+                          </span>
+
+                          <div class="composer-bar" aria-hidden="true">
+                            <span class="btn-ico"><svg viewBox="0 0 24 24">
+                                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                  fill="none" />
+                              </svg></span>
+                            <input class="conv-input" type="text" placeholder="Mensagem RCS" disabled>
+                            <span class="btn-ico"><svg viewBox="0 0 24 24">
+                                <path d="M12 3a3 3 0 0 1 3 3v6a3 3 0 1 1-6 0V6a3 3 0 0 1 3-3Zm0 12v4M8 19h8" fill="none"
+                                  stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                              </svg></span>
+                            <span class="btn-ico"><svg viewBox="0 0 24 24">
+                                <rect x="3" y="7" width="13" height="10" rx="2" fill="none" stroke="currentColor"
+                                  stroke-width="2" />
+                                <path d="M16 10l5-3v10l-5-3z" fill="currentColor" />
+                              </svg></span>
+                          </div>
+                        </section>
+
+
+                      </div>
+
+                      <!-- Nav Android (somente visual) -->
+                      <div class="nav-android nav-android-t3" aria-hidden="true">
+                        <div class="nav-btn voltar">
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M15 19 8 12l7-7" fill="none" stroke="currentColor" stroke-width="2"
+                              stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </div>
+                        <div class="nav-btn home"><span class="home-circ"></span></div>
+                        <div class="nav-btn recentes"><span class="barra"></span><span class="barra"></span><span
+                            class="barra"></span></div>
+                      </div>
+                    </div>
 
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-    <script>
-        document.getElementById('ano').textContent = new Date().getFullYear();
-    </script>
-    <script src="/js/particulas.js"></script>
-    <script src="js/script.js"></script>
+                    <!-- ========== /ANDROID ========== -->
+
+                    <!-- ========== iOS (novo, idêntico ao print) ========== -->
+                    <!-- ====== STACK iOS (fica SEMPRE no DOM) ====== -->
+                    <div class="stack-ios">
+                      <!-- iOS — TELA 1 (detalhes) -->
+                      <div class="ios-page screen ativo">
+                        <div class="ios-topbar" aria-hidden="true">
+                          <span class="ios-back">
+                            <svg viewBox="0 0 24 24">
+                              <path d="M20 12H7" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+                              <path d="M12 6L6 12L12 18" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                          </span>
+                        </div>
+
+                        <div class="ios-hero-header">
+                          <img class="ios-appicon pv-logo"
+                            src="https://dummyimage.com/128x128/0b0f14/ffffff.png&text=SC" alt="App icon">
+                          <h1 class="ios-title pv-nome">Nome</h1>
+                          <div class="ios-subtitle pv-operadora" data-default="Verificado por Vivo">Verificado por Vivo
+                          </div>
+                        </div>
+
+                        <div class="ios-card">
+                          <div class="ios-row">
+                            <span>Ocultar Alertas</span>
+                            <label class="ios-switch"><input type="checkbox"><i></i></label>
+                          </div>
+                          <div class="ios-divider"></div>
+                          <div class="ios-row">
+                            <span>Recibos de Leitura</span>
+                            <label class="ios-switch"><input type="checkbox" checked><i></i></label>
+                          </div>
+                        </div>
+
+                        <h3 class="ios-section">Sobre</h3>
+                        <div class="ios-card ios-about">
+                          <p class="pv-descricao">Descrição do agente aqui…</p>
+                        </div>
+
+                        <h3 class="ios-section">Detalhes</h3>
+                        <div class="ios-card ios-details">
+                          <div class="ios-detail-item">
+                            <div class="ios-detail-label">Site</div>
+                            <div class="ios-link">shortcode.com.br</div>
+                          </div>
+                          <div class="ios-divider"></div>
+                          <div class="ios-detail-item">
+                            <div class="ios-detail-label">Telefone</div>
+                            <div class="ios-link">+55 (47) 3285-8808</div>
+                          </div>
+                          <div class="ios-divider"></div>
+                          <div class="ios-detail-item">
+                            <div class="ios-detail-label">E-mail</div>
+                            <div class="ios-link">sms@shortcode.com.br</div>
+                          </div>
+                          <div class="ios-divider"></div>
+                          <div class="ios-detail-item">
+                            <div class="ios-detail-label">Termos e Condições</div>
+                          </div>
+                        </div>
+
+                        <div class="ios-home-indicator"></div>
+                      </div>
+
+                      <!-- iOS — TELA 2 (lista) — ativa por padrão -->
+                      <div class="screen ios2 ">
+                        <div class="ios2-app">
+                          <header class="ios2-top">
+                            <button class="ios2-btn-edit" type="button">Editar</button>
+                            <h1 class="ios2-title">Mensagens</h1>
+                            <div class="ios2-menu" aria-label="Filtros">
+                              <svg class="ios2-menu-ico" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6 7h12M6 12h12M6 17h8" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" />
+                              </svg>
+                              <span class="ios2-badge">11</span>
+                            </div>
+                          </header>
+
+                          <section class="ios2-list">
+                            <article class="ios2-row">
+                              <div class="ios2-avatar"><img class=" logo-ios2 ios-appicon pv-logo"
+                                  src="https://dummyimage.com/128x128/0b0f14/ffffff.png&text=SC" alt="App icon"
+                                  style="--bg-light:#efefef;"></div>
+                              <div class="ios2-text">
+                                <div class="ios2-name pv-nome">Short Code</div>
+                                <div class="ios2-sub">Anexo: 1 Foto</div>
+                              </div>
+                              <div class="ios2-meta">
+                                <time class="ios2-date">agora</time>
+                                <svg class="ios2-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                              </div>
+                            </article>
+
+                            <article class="ios2-row">
+                              <div class="ios2-avatar "><img src="/imagem/icone-usuario.png" alt="App icon"></div>
+                              <div class="ios2-text">
+                                <div class="ios2-name">7000</div>
+                                <div class="ios2-sub">Seu código de verificação é 123-456</div>
+                              </div>
+                              <div class="ios2-meta">
+                                <time class="ios2-date">ontem</time>
+                                <svg class="ios2-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                  <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                              </div>
+                            </article>
+                          </section>
+
+                          <div class="ios2-home"></div>
+                        </div>
+                      </div>
+
+                      <!-- iOS — TELA 3 (placeholder) -->
+                      <div class="screen ios3">
+                        <div class="ios3-app">
+                          <!-- Topo -->
+                          <header class="ios3-top">
+                            <button class="ios3-back" type="button" aria-label="Voltar">
+                              <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M15 19 8 12l7-7" fill="none" stroke="currentColor" stroke-width="2"
+                                  stroke-linecap="round" stroke-linejoin="round" />
+                              </svg>
+                            </button>
+                            <div class="ios3-status" aria-hidden="true"></div>
+                          </header>
+
+                          <!-- Hero / Título -->
+                          <section class="ios3-hero">
+                            <div class="ios3-logo-wrap">
+                              <img class="ios3-logo pv-logo logo"
+                                src="https://dummyimage.com/128x128/0b0f14/ffffff.png&text=SC" alt="App icon">
+                            </div>
+                            <div class="ios3-name-pill"><span class="pv-nome">Short Code</span></div>
+                            <div class="ios3-meta">
+                              <div class="ios3-meta-line">Mensagem de Texto · RCS</div>
+                              <div class="ios3-meta-time">Hoje, <span class=" ios3-hora hora-ao-vivo">11:38</span></div>
+                            </div>
+                          </section>
+
+                          <!-- Indicador "4 de 4" -->
+                          <div class="ios3-counter">
+
+                            <span class="ios3-counter-text">4 de 4</span>
+                          </div>
+
+                          <!-- Card -->
+                          <section class="ios3-carousel" id="ios3Carousel">
+                            <!-- Card 1 -->
+                            <article class="ios3-card">
+                              <img class="ios3-card-img" src="/imagem/banner/banner-sms.jpg" alt="">
+                              <div class="ios3-card-body">
+                                <div class="ios3-card-head">
+                                  <h3 class="ios3-card-title">Short Code – SMS</h3>
+                                  <svg class="ios3-card-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </div>
+                                <p class="ios3-card-text">Canal de mais abrangente!Oserviço de SMS em massa chega em seu
+                                  cliente mesm...</p>
+
+                                <!-- 1) botão -->
+                                <button class="ios3-card-pill" type="button">
+                                  Opções
+                                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </button>
+                                <!-- 2) popover (irmão do botão) -->
+                                <div class="ios3-pop">
+                                  <button class="ios3-pop-item" type="button">Entrar em contato</button>
+                                  <button class="ios3-pop-item" type="button">Entrar em contato</button>
+                                </div>
+                              </div>
+                            </article>
+
+                            <!-- Card 2 -->
+                            <article class="ios3-card">
+                              <img class="ios3-card-img" src="/imagem/banner/banner-rcs.jpg" alt="">
+                              <div class="ios3-card-body">
+                                <div class="ios3-card-head">
+                                  <h3 class="ios3-card-title">Short Code – RCS</h3>
+                                  <svg class="ios3-card-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </div>
+                                <p class="ios3-card-text">A comunicação da sua marca é nosso compromisso!</p>
+
+                                <button class="ios3-card-pill" type="button">
+                                  Opções
+                                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </button>
+                                <div class="ios3-pop">
+                                  <button class="ios3-pop-item" type="button">Entrar em contato</button>
+                                  <button class="ios3-pop-item" type="button">Entrar em contato</button>
+                                </div>
+                              </div>
+                            </article>
+
+                            <!-- Card 3 -->
+                            <article class="ios3-card">
+                              <img class="ios3-card-img" src="/imagem/banner/banner-whats.jpg" alt="">
+                              <div class="ios3-card-body">
+                                <div class="ios3-card-head">
+                                  <h3 class="ios3-card-title">WhatsApp Oficial</h3>
+                                  <svg class="ios3-card-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </div>
+                                <p class="ios3-card-text">Conversar com seu cliente em canais oficias gera mais
+                                  confiança com sua marca!...</p>
+
+                                <button class="ios3-card-pill" type="button">
+                                  Opções
+                                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </button>
+                                <div class="ios3-pop">
+                                  <button class="ios3-pop-item" type="button">Entrar em contato</button>
+                                  <button class="ios3-pop-item" type="button">Entrar em contato</button>
+                                </div>
+                              </div>
+                            </article>
+
+                            <!-- Card 4 -->
+                            <article class="ios3-card">
+                              <img class="ios3-card-img" src="/imagem/banner/banner-voz.jpg" alt="">
+                              <div class="ios3-card-body">
+                                <div class="ios3-card-head">
+                                  <h3 class="ios3-card-title">Short Code – Voz</h3>
+                                  <svg class="ios3-card-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </div>
+                                <p class="ios3-card-text">Cada canal tem seu publico!Atinjao publico certo com nosso
+                                  Torpedo de voz inteli...</p>
+
+                                <button class="ios3-card-pill" type="button">
+                                  Opções
+                                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"
+                                      stroke-linecap="round" stroke-linejoin="round" />
+                                  </svg>
+                                </button>
+                                <div class="ios3-pop">
+                                  <button class="ios3-pop-item" type="button">Entrar em contato</button>
+                                  <button class="ios3-pop-item" type="button">Entrar em contato</button>
+                                </div>
+                              </div>
+                            </article>
+                          </section>
+
+
+
+                          <!-- Avisos & ações -->
+                          <p class="ios3-note">Short Code verá as ações que você selecionar</p>
+
+                          <div class="ios3-center">
+                            <button class="ios3-btn ios3-btn-outline" type="button">Relatar Spam</button>
+                          </div>
+
+                          <p class="ios3-small">
+                            Se você não esperava esta mensagem de um remetente desconhecido, ela pode ser spam.
+                          </p>
+
+                          <div class="ios3-actions">
+                            <button class="ios3-chip ios3-chip-danger" type="button">Apagar</button>
+                            <button class="ios3-chip ios3-chip-primary" type="button">Marcar como<br>Conhecido</button>
+                          </div>
+
+                          <!-- Composer -->
+                          <div class="ios3-composer" aria-hidden="true">
+                            <button class="ios3-add" type="button">+</button>
+                            <div class="ios3-input">Mensagem de Texto · RCS</div>
+                            <button class="ios3-voice" type="button">
+                              <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 5a3 3 0 0 1 3 3v4a3 3 0 1 1-6 0V8a3 3 0 0 1 3-3Zm0 10v4M8 19h8" fill="none"
+                                  stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                              </svg>
+                            </button>
+                          </div>
+
+                          <!-- Home indicator -->
+                          <div class="ios3-home"></div>
+                        </div>
+                      </div>
+
+
+                    </div>
+
+
+                    <!-- ========== /iOS ========== -->
+
+                  </div>
+
+
+                </div>
+
+
+              </div>
+              <div class="preview-controls-ios">
+                <button type="button" class="btn-prev-i" aria-label="Tela anterior">❮</button>
+                <div class="preview-dots-i"></div>
+                <button type="button" class="btn-next-i" aria-label="Próxima tela">❯</button>
+              </div>
+              <div class="preview-controls">
+                <button type="button" class="btn-prev" aria-label="Tela anterior">❮</button>
+                <div class="preview-dots"></div>
+                <button type="button" class="btn-next" aria-label="Próxima tela">❯</button>
+              </div>
+            </div>
+          </div>
+          <!-- Ações -->
+          <div class="d-flex justify-content-end gap-2 mb-30">
+            <a href="etapa-2.html" class="botao-voltar">Voltar</a>
+            <a href="#" class="botao botao-verde botao-borda">Salvar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <script src="/js/particulas.js"></script>
+  <script src="js/script.js"></script>
+  <script src="/js/phone-caixa.js"></script>
+  <script src="/js/carrosel.js"></script>
+  <script src="/js/phone-conversas.js"></script>
+  <script src="/js/phone-ios.js"></script>
 </body>
 
 </html>

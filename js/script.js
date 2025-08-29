@@ -9,7 +9,7 @@
     const hh = String(d.getHours()).padStart(2,'0');
     const mm = String(d.getMinutes()).padStart(2,'0');
     document
-      .querySelectorAll('.status-bar .hora-ao-vivo, .status-bar .lado-centro, .status-bar .lado-centro.ios')
+      .querySelectorAll('.status-bar .hora-ao-vivo, .status-bar .lado-centro, .status-bar .lado-centro.ios,  .conv-time.hora-ao-vivo , .ios3-hora.hora-ao-vivo')
       .forEach(el => el.textContent = `${hh}:${mm}`);
   }
   atualizaHora();

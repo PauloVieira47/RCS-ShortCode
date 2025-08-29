@@ -1,0 +1,423 @@
+/* ================= iOS 3 — BASE (tudo fica DENTRO da moldura) ================= */
+.telefone-sim[data-os="ios"] .ios3-app {
+    /* tema escuro padrão */
+    --ios3-bg: #000000;
+    --ios3-text: #ffffff;
+    --ios3-card: #1a1f27;
+    --ios3-muted: #98a2b3;
+    --ios3-pill: #11151b;
+
+    /* “safe areas” internas (ajuste se quiser descer/subir tudo) */
+    --safe-top: 40px;
+    --safe-x: 10px;
+    --safe-bot: 10px;
+
+    position: absolute;
+    inset: 0;
+    padding: var(--safe-top) var(--safe-x) var(--safe-bot);
+    background: var(--ios3-bg);
+    color: var(--ios3-text);
+    border-radius: 0;
+    overflow: hidden;
+    min-height: 100%;
+}
+
+/* tema claro via data-tema="claro" */
+.telefone-sim[data-os="ios"][data-tema="claro"] .ios3-app {
+    --ios3-bg: #ffffff;
+    --ios3-text: #0b0f14;
+    --ios3-card: #f2f4f7;
+    --ios3-muted: #667085;
+    --ios3-pill: #eef2f6;
+}
+
+/* ================= topo / hero ================= */
+.ios3-top {
+    left: -11px;
+    top: -11px;
+    position: relative;
+    height: 48px;
+    display: flex
+;
+    align-items: center;
+    padding: 6px 10px 0;
+}
+
+.ios3-back {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 0;
+    display: grid;
+    place-items: center;
+    background: var(--ios3-pill);
+    color: var(--ios3-text);
+}
+
+.ios3-status {
+    flex: 1;
+}
+
+.ios3-hero {
+    bottom: 40px;
+    position: relative;
+    display: flex
+;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding-top: 4px;
+}
+
+.ios3-logo-wrap {
+    width: 65px;
+    height: 65px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #0b0f14;
+}
+
+.telefone-sim[data-os="ios"][data-tema="claro"] .ios3-logo-wrap {
+    background: #f7f7f7;
+}
+
+.ios3-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ios3-name-pill {
+    background: var(--ios3-pill);
+    color: var(--ios3-text);
+    border-radius: 999px;
+    padding: 2px 10px;
+    font-weight: 700;
+    border: 1px solid #5e5e5e;
+}
+
+.ios3-meta {
+    color: var(--ios3-muted);
+    font-size: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* indicador */
+.ios3-counter {
+   position: relative;
+    bottom: 57px;
+    margin-left: 25px;
+    display: flex
+;
+    gap: 8px;
+    padding: 6px 0 0;
+}
+
+.ios3-counter .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--ios3-muted);
+    opacity: .35;
+}
+
+.ios3-counter .dot.on {
+    opacity: 1;
+}
+
+.ios3-counter-text {
+    font-size: 12px;
+    color: var(--ios3-muted);
+}
+
+/* ================= cards (estilo geral) ================= */
+.ios3-card {
+    background: var(--ios3-card);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.ios3-card-img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+}
+
+.ios3-card-body {
+    position: relative;
+    padding: 10px 12px 12px;
+    cursor: pointer;
+}
+
+.ios3-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.ios3-card-title {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ios3-card-text {
+    font-size: 12px;
+    color: var(--ios3-text);
+    opacity: .9;
+    margin: 4px 0 8px;
+}
+
+.ios3-card-pill {
+    width: 110px;
+    display: flex
+;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 25px;
+    padding: 6px 13px;
+    background: #404040;
+    color: var(--ios3-text);
+    font-weight: 600;
+}
+
+.telefone-sim[data-os="ios"][data-tema="claro"] .ios3-card-pill {
+    background: #cccccc;
+}
+.ios3-card-chevron {
+     box-sizing: content-box;
+    width: 26px;
+    height: 26px;
+    padding: 0px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .08);
+}
+
+/* ================= carrossel empilhado (efeito “vai pra trás”) =================
+   Ajuste rápido:
+   --deck-w   : largura do “baralho” (ficar mais fino/colado à esquerda)
+   --card-img : altura do banner do card
+*/
+.telefone-sim[data-os="ios"] .ios3-carousel {
+    --deck-w: 68%;
+    --card-img: 100px;
+
+    position: relative;
+    width: var(--deck-w);
+    margin-left: 12px;
+    /* colado à esquerda */
+    margin-top: 6px;
+    height: calc(var(--card-img) + 92px);
+    /* não empurra o restante pra baixo */
+}
+
+.telefone-sim[data-os="ios"] .ios3-carousel .ios3-card {
+        position: absolute;
+    left: 0;
+    top: -55px;
+    width: 100%;
+    margin: 0;
+    transform: translateX(calc(var(--p, 0) * -7px)) translateY(calc(var(--p, 0) * -5px)) scale(calc(1 - var(--p, 0) * 0.045));
+    opacity: calc(1 - var(--p, 0) * 0.06);
+    z-index: calc(100 - var(--p, 0));
+    transition: transform .28s ease, opacity .28s ease;
+    will-change: transform;
+}
+.telefone-sim[data-os="ios"] .ios3-carousel .ios3-card-img {
+    height: var(--card-img);
+}
+
+.telefone-sim[data-os="ios"] .ios3-carousel .ios3-card.hidden {
+    display: none;
+}
+
+/* setas opcionais do carrossel (dentro da moldura) */
+.telefone-sim[data-os="ios"] .ios3-c-nav {
+    position: absolute;
+    right: -8px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.telefone-sim[data-os="ios"] .ios3-c-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    border: 0;
+    display: grid;
+    place-items: center;
+    background: var(--ios3-pill);
+    color: var(--ios3-text);
+}
+
+/* ================= popover do botão “Opções” ================= */
+.ios3-pop {
+    position: absolute;
+    left: 0;
+    bottom: 44px;
+    background: var(--ios3-card);
+    border-radius: 18px;
+    padding: 8px;
+    min-width: 220px;
+    display: none;
+    z-index: 30;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, .35), 0 0 0 1px rgba(255, 255, 255, .06) inset;
+}
+
+.ios3-pop::before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    bottom: -8px;
+    width: 14px;
+    height: 14px;
+    background: var(--ios3-card);
+    transform: rotate(45deg);
+    box-shadow: -1px 1px 0 rgba(255, 255, 255, .06) inset;
+}
+
+.ios3-pop-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    color: var(--ios3-text);
+    background: transparent;
+    border: 0;
+    width: 100%;
+    font-size: 14px;
+    text-align: left;
+}
+
+.ios3-pop-item:hover {
+    background: rgba(255, 255, 255, .06);
+}
+
+.ios3-card.is-open .ios3-pop {
+    display: block;
+}
+
+/* abrir via JS adicionando .is-open no .ios3-card */
+
+/* ================= avisos, ações e composer ================= */
+.ios3-note,
+.ios3-small {
+    color: var(--ios3-muted);
+    font-size: 12px;
+    text-align: center;
+    margin: 8px 16px;
+}
+
+.ios3-center {
+    display: flex;
+    justify-content: center;
+}
+
+.ios3-btn {
+    font-size: 13px;
+    border-radius: 999px;
+    padding: 2px 11px;
+    border: 1px solid #0d151c;
+    background: #0d151c;
+    color: #0678dd;
+    cursor: unset !important;
+}
+
+.ios3-btn-outline {
+    border-color:transparent;
+}
+.telefone-sim[data-os="ios"][data-tema="claro"] .ios3-btn {
+    border: 1px solid #e1e1e1;
+    background: #e1e1e1;
+    color: #0678dd;
+}
+
+.ios3-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 16px;
+}
+
+.ios3-chip {
+    flex: 1;
+    border-radius: 60px;
+    padding: 2px;
+    border: 0;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: unset !important;
+}
+
+.ios3-chip-danger {
+    background: #0d151c;
+    color: #ce1d2f
+}
+
+.ios3-chip-primary {
+    background: #0d151c;
+    color: #0678dd;
+}
+.telefone-sim[data-os="ios"][data-tema="claro"] .ios3-chip {
+    background: #e1e1e1;
+    
+}
+
+.ios3-composer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+}
+
+.ios3-add,
+.ios3-voice {
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    border: 0;
+    background: var(--ios3-pill);
+    color: var(--ios3-text);
+}
+
+.ios3-input {
+    flex: 1;
+    background: var(--ios3-card);
+    border-radius: 22px;
+    padding: 6px 11px;
+    color: var(--ios3-muted);
+}
+
+/* home indicator SEMPRE dentro da moldura */
+.ios3-home {
+    height: 24px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 2px;
+}
+
+.ios3-home::after {
+    content: "";
+    width: 120px;
+    height: 5px;
+    border-radius: 999px;
+    background: #cbd5e1;
+}
+
+/* ================= responsivo fino ================= */
+@media (max-width:390px) {
+    .telefone-sim[data-os="ios"] .ios3-carousel {
+        --deck-w: 72%;
+        --card-img: 82px;
+    }
+}

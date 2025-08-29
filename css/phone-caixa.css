@@ -1,0 +1,485 @@
+/* ==========================================================
+   CONTÊINER E TROCA DE TELAS (ANTI-SOBREPOSIÇÃO)
+   ========================================================== */
+.tela>.screen {
+    position: absolute;
+    inset: 0;
+    display: none;
+}
+
+.tela>.screen.ativo {
+    display: block;
+    z-index: 2;
+}
+
+.tela>.screen:not(.ativo) {
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* 1ª tela (Android original) ocupa a área útil da .tela */
+.telefone-sim[data-os="android"] .tela>.android-page {
+    position: absolute;
+    inset: 0;
+    bottom: 56px;
+    /* preserva sua barra de navegação Android */
+}
+
+/* ==========================================================
+   2ª TELA — APP "MENSAGENS" DO ANDROID
+   ========================================================== */
+.android-mensagens .android-app {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 56px;
+    /* mesma área útil da 1ª tela */
+    background: #14171c;
+    /* fundo geral escuro = print */
+    color: #e6e6e6;
+    overflow: hidden;
+    border-radius: 7px;
+    /* igual à borda interna da .tela */
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02);
+    display: flex;
+    flex-direction: column;
+}
+
+/* ================= AppBar (topo) ================= */
+.appbar { position: relative; }
+
+/* centralizado no X e “um pouco mais para baixo” */
+.icone-google-css{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 95px;        /* ↑ ajuste aqui: maior = mais para baixo */
+  z-index: 2;       /* fica por cima do fundo */
+}
+
+.icone-google-css img{
+  width: 36px;      /* ajuste de tamanho se quiser */
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+
+.android-mensagens .g-logo {
+    width: 34px;
+    height: 34px;
+    display: block;
+}
+
+.android-mensagens .titulo-app {
+    justify-content: center;
+    display: flex
+;
+    margin-top: 145px;
+    font-size: 31px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: .2px;
+}
+
+.android-mensagens .acoes {
+    position: absolute;
+    right: 14px;
+    top: 255px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.android-mensagens .btn-ico {
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: transparent;
+    color: #e6e6e6;
+ 
+}
+
+.android-mensagens .btn-ico svg {
+    width: 24px;
+    height: 24px;
+}
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .btn-ico {
+    color: #000000;
+}
+
+.android-mensagens .avatar-perfil {
+   width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #919191;
+    border: 2px solid #0000008c;
+}
+
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .avatar-perfil{
+        background: #c7c7c7;
+}
+
+/* ================= Sheet (folha com a lista) =================
+   posiciona a lista “lá embaixo”, com recuos internos */
+.android-mensagens .sheet {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 1px;
+    top: calc(100px + 210px);
+    background: #1a1f26;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    /* border-bottom-left-radius: 18px; */
+    /* border-bottom-right-radius: 2px; */
+    padding: 16px 14px 22px;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .03);
+
+}
+
+/* ================= Lista e Itens ================= */
+.android-mensagens .list {
+    display: block;
+}
+
+.android-mensagens .msg-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #232a33;
+    border-radius: 22px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+}
+
+.android-mensagens .msg-item.agente {
+    position: relative;
+}
+
+.android-mensagens .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    flex: 0 0 56px;
+    user-select: none;
+}
+
+.android-mensagens .avatar.cinza {
+    background: #3a404a;
+    color: #cfd7e4;
+}
+
+.android-mensagens .avatar.logo {
+    object-fit: cover;
+    background: #000;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .25);
+}
+
+.android-mensagens .msg-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.android-mensagens .msg-body .titulo {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.android-mensagens .msg-body .sub {
+    font-size: 16px;
+    opacity: .78;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.android-mensagens .hora {
+    margin-left: auto;
+    opacity: .8;
+    font-size: 14px;
+}
+
+.android-mensagens .rcs-badge {
+    position: absolute;
+    left: 58px;
+    bottom: 6px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #5787ff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+
+/* ================= FAB (novo chat) ================= */
+.android-mensagens .fab {
+    position: absolute;
+    right: 22px;
+    bottom: 22px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 0;
+    background: #5787ff;
+    color: #fff;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+    cursor: unset;
+}
+
+.android-mensagens .fab svg {
+    width: 28px;
+    height: 28px;
+}
+/* no tema claro, usa a variável se existir; nos demais fica transparente */
+.telefone-sim[data-os="ios"][data-tema="claro"] .ios2-avatar{
+  background: var(--bg-light, transparent);
+}
+
+.telefone-sim[data-os="ios"] .ios2-avatar img{
+  width:100%; height:100%; object-fit:cover; display:block; border-radius:2px;
+}
+
+
+/* ================= Tema claro (opcional) ================= */
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .android-app {
+    background: #f4f6f9;
+    color: #0b0f14;
+}
+
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .sheet {
+    background: #ffffff;
+}
+
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .msg-item {
+    background: #eef3f9;
+}
+
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .avatar.cinza {
+    background: #cfd7e4;
+    color: #394150;
+}
+
+/* ================= Defensivos ================= */
+.telefone-sim[data-os="android"] .ios-page {
+    display: none !important;
+}
+
+.telefone-sim[data-os="android"] .notch-ios {
+    display: none !important;
+}
+
+/* Scrollbar discreta dentro da sheet (opcional) */
+.android-mensagens .sheet::-webkit-scrollbar {
+    width: 6px;
+}
+
+.android-mensagens .sheet::-webkit-scrollbar-thumb {
+    background: #2d3440;
+    border-radius: 8px;
+}
+
+.android-mensagens .sheet::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ================= Responsivo ================= */
+@media (max-width:390px) {
+    .android-mensagens .titulo-app {
+        font-size: 30px;
+    }
+
+    .android-mensagens .msg-body .titulo {
+        font-size: 17px;
+    }
+
+    .android-mensagens .msg-body .sub {
+        font-size: 15px;
+    }
+
+    .android-mensagens .avatar {
+        width: 52px;
+        height: 52px;
+        flex-basis: 52px;
+    }
+
+    .android-mensagens .msg-item {
+        padding: 12px 14px;
+        border-radius: 20px;
+    }
+}
+
+/* ==========================================================
+   (Opcional) Controles de preview externos (setas/dots)
+   ========================================================== */
+/* ==== CONTROLES DE PREVIEW ==== */
+.preview-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.preview-controls .btn-prev,
+.preview-controls .btn-next {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 0;
+    cursor: pointer;
+    background: rgba(0, 0, 0, .45);
+    color: #fff;
+    backdrop-filter: blur(6px);
+}
+
+.telefone-sim[data-tema="claro"]~.preview-controls .btn-prev,
+.telefone-sim[data-tema="claro"]~.preview-controls .btn-next {
+    background: rgba(0, 0, 0, .18);
+    color: #0b0f14;
+}
+
+.preview-dots {
+    display: flex;
+    gap: 8px;
+}
+
+.preview-dots .dot {
+    width: 8px;
+    height: 8px;
+    border: 0;
+    border-radius: 999px;
+    background: #9aa0a6;
+    opacity: .45;
+}
+
+.preview-dots .dot.ativo {
+    width: 18px;
+    opacity: 1;
+}
+
+/* ==== AVATAR DENTRO DO CARD (COM FIXES) ==== */
+.android-mensagens .msg-item {
+    position: relative;
+    overflow: visible;
+    /* evita cortar a bolacha */
+    padding: 14px 16px 14px 86px;
+    /* reserva espaço p/ avatar à esquerda */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #232a33;
+    border-radius: 22px;
+    margin-bottom: 10px;
+}
+
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .msg-item {
+    background: #eef3f9;
+}
+
+/* bolacha do avatar (absoluta, centralizada) */
+.android-mensagens .msg-item .avatar-box {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* recorta em círculo */
+    z-index: 3;
+    pointer-events: none;
+    box-sizing: border-box;
+}
+
+/* logo carregada (1º item) */
+.android-mensagens .msg-item .avatar.logo {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    background: #000;
+    border-radius: 50%;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .25);
+}
+
+/* avatar padrão (outros itens ou fallback) */
+.android-mensagens .msg-item .avatar.user {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    background: #3a404a;
+    color: #cfd7e4;
+    border-radius: 50%;
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, .15);
+}
+
+.android-mensagens .msg-item .avatar.user .ico-user {
+    width: 60%;
+    height: 60%;
+    opacity: .95;
+    display: block;
+}
+
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .msg-item .avatar.user {
+    background: #cfd7e4;
+    color: #394150;
+}
+
+/* selo RCS preso na bolacha */
+.android-mensagens .msg-item .avatar-box .rcs-badge {
+    position: absolute;
+    right: -4px;
+    bottom: -4px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #5787ff;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, .25);
+}
+
+/* tipografia do item */
+.android-mensagens .msg-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.android-mensagens .msg-body .titulo {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.android-mensagens .msg-body .sub {
+    font-size: 16px;
+    opacity: .78;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.android-mensagens .hora {
+    margin-left: auto;
+    opacity: .8;
+    font-size: 14px;
+}
+
+
+
+
+
