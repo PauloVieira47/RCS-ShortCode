@@ -47,22 +47,27 @@
 }
 
 /* ================= AppBar (topo) ================= */
-.appbar { position: relative; }
-
-/* centralizado no X e “um pouco mais para baixo” */
-.icone-google-css{
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  top: 95px;        /* ↑ ajuste aqui: maior = mais para baixo */
-  z-index: 2;       /* fica por cima do fundo */
+.appbar {
+    position: relative;
 }
 
-.icone-google-css img{
-  width: 36px;      /* ajuste de tamanho se quiser */
-  height: 36px;
-  object-fit: contain;
-  display: block;
+/* centralizado no X e “um pouco mais para baixo” */
+.icone-google-css {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 95px;
+    /* ↑ ajuste aqui: maior = mais para baixo */
+    z-index: 2;
+    /* fica por cima do fundo */
+}
+
+.icone-google-css img {
+    width: 36px;
+    /* ajuste de tamanho se quiser */
+    height: 36px;
+    object-fit: contain;
+    display: block;
 }
 
 .android-mensagens .g-logo {
@@ -73,8 +78,7 @@
 
 .android-mensagens .titulo-app {
     justify-content: center;
-    display: flex
-;
+    display: flex;
     margin-top: 145px;
     font-size: 31px;
     line-height: 1;
@@ -100,27 +104,28 @@
     place-items: center;
     background: transparent;
     color: #e6e6e6;
- 
+
 }
 
 .android-mensagens .btn-ico svg {
     width: 24px;
     height: 24px;
 }
+
 .telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .btn-ico {
     color: #000000;
 }
 
 .android-mensagens .avatar-perfil {
-   width: 38px;
+    width: 38px;
     height: 38px;
     border-radius: 50%;
     background: #919191;
     border: 2px solid #0000008c;
 }
 
-.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .avatar-perfil{
-        background: #c7c7c7;
+.telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .avatar-perfil {
+    background: #c7c7c7;
 }
 
 /* ================= Sheet (folha com a lista) =================
@@ -240,17 +245,21 @@
     width: 28px;
     height: 28px;
 }
+
 /* no tema claro, usa a variável se existir; nos demais fica transparente */
-.telefone-sim[data-os="ios"][data-tema="claro"] .ios2-avatar{
-  background: var(--bg-light, transparent);
+.telefone-sim[data-os="ios"][data-tema="claro"] .ios2-avatar {
+    background: var(--bg-light, transparent);
 }
 
-.telefone-sim[data-os="ios"] .ios2-avatar img{
-  width:100%; height:100%; object-fit:cover; display:block; border-radius:2px;
+.telefone-sim[data-os="ios"] .ios2-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 2px;
 }
 
 
-/* ================= Tema claro (opcional) ================= */
 .telefone-sim[data-os="android"][data-tema="claro"] .android-mensagens .android-app {
     background: #f4f6f9;
     color: #0b0f14;
@@ -317,6 +326,7 @@
         border-radius: 20px;
     }
 }
+
 
 /* ==========================================================
    (Opcional) Controles de preview externos (setas/dots)
@@ -478,8 +488,3 @@
     opacity: .8;
     font-size: 14px;
 }
-
-
-
-
-

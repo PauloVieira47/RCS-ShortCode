@@ -289,7 +289,7 @@
     position: absolute;
     inset: 0;
     width: 100%;
-    height: 155px;
+    height: 140px;
     object-fit: cover;
     display: block;
     transform-origin: top;
@@ -614,7 +614,7 @@
 }
 
 .op-item {
-    padding: 14px 18px;
+    padding: 8px 18px;
     border-bottom: 1px solid rgba(255, 255, 255, .09)
 }
 

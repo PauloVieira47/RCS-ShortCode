@@ -105,16 +105,34 @@
 
   // ===== HELPERS / FALLBACKS =====
   function formatTelBR(v){
-    const d = v.replace(/\D+/g,'');
-    if (d.length <= 10){
-      return d.replace(/^(\d{0,2})(\d{0,4})(\d{0,4}).*/, (m,a,b,c)=>
-        (a?`(${a}`:'') + (a.length===2?') ':'') + b + (c?`-${c}`:'')
-      ).trim();
-    }
-    return d.replace(/^(\d{0,2})(\d{0,5})(\d{0,4}).*/, (m,a,b,c)=>
-      (a?`(${a}`:'') + (a.length===2?') ':'') + b + (c?`-${c}`:'')
+  const d = String(v || '').replace(/\D+/g,'');
+
+  // 0800 #### ###( # )
+  if (d.startsWith('0800')){
+    // 0800 + 6 ou 7 dígitos
+    const sub = d.slice(4);
+    if (!sub) return '0800';
+    if (sub.length <= 3) return `0800 ${sub}`;
+    if (sub.length <= 6) return `0800 ${sub.slice(0,3)} ${sub.slice(3)}`;
+    // 7 ou mais -> 0800 123 4567
+    return `0800 ${sub.slice(0,3)} ${sub.slice(3,7)}`;
+  }
+
+  // telefones com DDD
+  if (d.length <= 10){
+    // (DD) 1234-5678
+    return d.replace(
+      /^(\d{0,2})(\d{0,4})(\d{0,4}).*/,
+      (m,a,b,c)=> (a?`(${a}`:'') + (a.length===2?') ':'') + b + (c?`-${c}`:'')
     ).trim();
   }
+  // (DD) 91234-5678
+  return d.replace(
+    /^(\d{0,2})(\d{0,5})(\d{0,4}).*/,
+    (m,a,b,c)=> (a?`(${a}`:'') + (a.length===2?') ':'') + b + (c?`-${c}`:'')
+  ).trim();
+}
+
 
   const FALLBACKS = {
     nome:  document.querySelector('.pv-nome')?.textContent || '',

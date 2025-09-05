@@ -1,28 +1,26 @@
-/* Paleta usada:
-   Azul primário: #0066ff
-   Azul secundário: #00ccff
-   Azul profundo sidebar: #0f1b2d
-   Azul link ativo: #0a84ff
-   Texto principal: #0f172a
-   Texto sobre azul: #eaf6ff
-   Bordas suaves: rgba(255,255,255,.18) / rgba(15,23,42,.12)
-*/
-
-/* Reset básico */
 * {
     box-sizing: border-box;
 }
 
-
 body {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #0b63e6, #21b8ff);
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
     color: #101111;
-    background-attachment: fixed;
+    position: relative;
+    min-height: 100vh;
 }
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, #0b63e6, #21b8ff);
+    z-index: -1;
+}
+
 
 .container {
     width: 100%;
@@ -329,27 +327,24 @@ body {
 }
 
 .botao-borda {
-    border: 3px solid transparent;
+    border: 1px solid transparent;
     background-origin: padding-box, border-box;
     background-clip: padding-box, border-box;
     background-size: 100% 100%, 400% 100%;
 }
 
 .botao-borda:hover {
-    
+
     color: #000000;
     background-image:
         linear-gradient(315deg, #89d8d3 0%, #03c8a8 74%),
-         linear-gradient(
-  135deg,
-  #0b0f14 0%,
-  #0f2133 20%,
-  #003a65 45%,
-  #0078c2 60%,
-  #00d2ff 80%,
-  #0b0f14 100%
-  
-);
+        linear-gradient(135deg,
+            #0b0f14 0%,
+            #0f2133 20%,
+            #003a65 45%,
+            #0078c2 60%,
+            #00d2ff 80%,
+            #0b0f14 100%);
     animation: borda-slide 2.5s linear infinite;
 }
 
@@ -452,6 +447,34 @@ aside[aria-label="Exemplo no celular"] {
     width: max-content;
 }
 
+/* garante coluna: imagem em cima, botão embaixo */
+aside[aria-label="Exemplo no celular"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* opcional */
+}
+
+/* espaço entre imagem e botão */
+.mockup-celular {
+    margin-bottom: 16px;
+}
+
+/* DESATIVA sticky quando a janela é baixa (ex.: ~593px) */
+@media (max-height: 610px) {
+    .mockup-celular.fixo {
+        position: static;
+        top: auto;
+    }
+}
+
+/* (opcional) mantém sticky só quando há altura suficiente */
+@media (min-height: 611px) {
+    .mockup-celular.fixo {
+        position: sticky;
+        top: 18px;
+    }
+}
 
 
 @media (max-width: 980px) {
@@ -473,18 +496,156 @@ aside[aria-label="Exemplo no celular"] {
     font-size: .95rem;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
-  }
-
-  to {
-    opacity: 1;
-    transform: none;
-  }
+.titulo-form-rcs {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #ffffff;
 }
 
-.fadeInUp {
-  animation-name: fadeInUp;
+
+
+/* ====== Inputs em erro ====== */
+.is-invalid {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 .18rem rgba(220, 53, 69, .12);
+}
+
+.invalid-feedback {
+    display: none;
+    color: #000000 !important;
+    font-size: .875rem;
+    margin-top: .35rem;
+    line-height: 1.25;
+    animation: fade-in .16s ease-out both;
+}
+
+.is-invalid~.invalid-feedback {
+    display: block;
+}
+
+.invalid-feedback::before {
+    content: "⚠️ ";
+    font-size: .95em;
+}
+
+/* ====== Bubble (primeiro erro) ====== */
+.error-tip {
+    position: fixed;
+    z-index: 9999;
+    background: #111;
+    color: #fff;
+    padding: 10px 12px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .25);
+    font-size: .9rem;
+    max-width: 320px;
+    transform: translateY(-8px);
+    animation: tip-in .16s ease-out;
+}
+
+.error-tip::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 16px;
+    border: 6px solid transparent;
+    border-top-color: #111;
+}
+
+/* ====== Toasts ====== */
+/* ===== TOASTS – topo central, responsivo e moderno (só CSS) ===== */
+#toasts {
+    position: fixed;
+    top: 8vh;
+    /* distância do topo */
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92vw, 520px);
+    /* limita largura no mobile/desktop */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 10000;
+    pointer-events: none;
+    /* não bloqueia clique no que está atrás */
+}
+
+.toastx {
+    position: relative;
+    pointer-events: auto;
+    width: 100%;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 18px;
+    border-radius: 16px;
+    color: #fff;
+
+    /* visual mais “glass” */
+    background: rgba(17, 17, 17, .88);
+    backdrop-filter: blur(10px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, .06);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+
+
+    opacity: 0;
+    transform: translateY(-12px) scale(.98);
+    animation: toast-in 4ms cubic-bezier(.2, .7, .2, 1) forwards;
+}
+
+.toastx .icon {
+    font-size: 1.25rem;
+}
+
+
+.toastx.success {
+    background: linear-gradient(180deg, rgba(34, 197, 94, .93), rgba(22, 163, 74, .93));
+}
+
+.toastx.error {
+    background: linear-gradient(180deg, rgba(239, 68, 68, .93), rgba(220, 38, 38, .93));
+}
+
+.toastx.info {
+    background: linear-gradient(180deg, rgba(14, 165, 233, .93), rgba(34, 211, 238, .93));
+}
+
+.toastx::after {
+    content: "";
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, .65);
+    transform-origin: left;
+    animation: toast-progress var(--toast-time, 3000ms) linear forwards;
+}
+
+@keyframes toast-in {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes toast-progress {
+    to {
+        transform: scaleX(0);
+    }
+}
+
+@media (max-width: 576px) {
+    #toasts {
+        top: 12px;
+        width: calc(100vw - 24px);
+    }
+
+    .toastx {
+        border-radius: 12px;
+    }
 }

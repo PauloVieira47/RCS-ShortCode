@@ -20,7 +20,7 @@
 
 </head>
 
-<body>
+<body style="background: linear-gradient(135deg, #0b63e6, #21b8ff);">
 
   <!-- ===================== ÁREA PRINCIPAL ===================== -->
   <div class="area">
@@ -44,9 +44,11 @@
     </header>
 
     <!-- Conteúdo central dentro de um container -->
-    <div id="particles-js"></div>
+
     <!-- ============ ETAPA: FORMULÁRIO DO AGENTE RCS ============ -->
-    <section id="etapa-agente-rcs" class="secao-rcs py-4 py-lg-5 ">
+    <section id="etapa-agente-rcs" class="secao-rcs py-4 py-lg-5 fade-in"
+      style="background: linear-gradient(135deg, #0b63e6, #21b8ff);">
+      <div id="particles-js"></div>
       <div class="container">
 
 
@@ -54,69 +56,135 @@
 
 
           <!-- Coluna ESQUERDA: formulário -->
-          <div class="col-12 col-lg-6">
-            <div class="p-3 p-md-4">
-              <h2 class="h4 mb-2">Solicitar novo agente RCS</h2>
+          <div class="col-12 col-lg-6 ">
+            <div class="p-3 p-md-4 mt-50">
+              <!-- Título da nova seção -->
+              <h2 class="titulo-form-rcs mb-20">Informações do Responsável</h2>
+
+              <div class="row g-3">
+                <!-- CNPJ -->
+                <div class="col-md-6 col-12 mb-30">
+                  <label for="cnpjResponsavel" class="texto-formulario mb-10">CNPJ</label>
+                  <input type="text" id="cnpjResponsavel" name="cnpjResponsavel" class="form-control"
+                    placeholder="Ex.: 12.345.678/0001-90" maxlength="18" form="form-agente-rcs" required>
+                  <div class="invalid-feedback">
+                    Informe um CNPJ válido.
+                  </div>
+                </div>
+
+                <!-- Nome do responsável -->
+                <div class="col-md-6 col-12">
+                  <label for="nomeResponsavel" class="texto-formulario mb-10">Nome do Responsável</label>
+                  <input type="text" id="nomeResponsavel" name="nomeResponsavel" class="form-control"
+                    placeholder="Ex.: João Silva" form="form-agente-rcs" required>
+                  <div class="invalid-feedback">
+                    Informe o nome do responsável.
+                  </div>
+                </div>
+
+              </div>
+
+
+              <h2 class="titulo-form-rcs mb-0">Solicitar novo agente RCS</h2>
               <p class="texto-apoio small mb-3">
                 Preencha as informações do agente. Esses dados serão usados no perfil RCS.
               </p>
 
               <form id="form-agente-rcs" novalidate>
                 <!-- Nome (máx. 18) -->
-                <div class="py-10">
-                  <label for="nomeAgente" class="texto-formulario mb-10">Nome do Agente </label><span
-                    class="texto-formulario-informativo"> (Máximo de 18 caracteres.)</span>
-                  <input type="text" id="nomeAgente" name="nomeAgente" maxlength="18" class="form-control"
+                <div class="py-05">
+                  <label for="nomeAgente" class="texto-formulario mb-10">Nome do Agente </label>
+                  <span class="texto-formulario-informativo"> (Máximo de 40 caracteres.)</span>
+                  <input type="text" id="nomeAgente" name="nomeAgente" maxlength="40" class="form-control"
                     placeholder="Ex.: Short Code" required>
-
+                  <div class="invalid-feedback">
+                    Informe o nome do agente.
+                  </div>
                 </div>
 
                 <!-- Descrição (máx. 100) -->
-                <div class="py-10">
-                  <label for="descAgente" class="texto-formulario mb-10">Descrição</label><span
-                    class="texto-formulario-informativo"> (Até 100 caracteres.)</span>
+                <div class="py-05">
+                  <label for="descAgente" class="texto-formulario mb-10">Descrição</label>
+                  <span class="texto-formulario-informativo"> (Até 100 caracteres.)</span>
                   <textarea style="height: 35px;" id="descAgente" name="descAgente" maxlength="100" rows="2"
-                    class="form-control" placeholder="Ex.: Atendimento e novidades por RCS."></textarea>
+                    class="form-control" placeholder="Ex.: Atendimento e novidades por RCS." required></textarea>
+                  <div class="invalid-feedback">
+                    Informe uma descrição.
+                  </div>
                 </div>
+
+
 
                 <!-- Telefone (SAC) -->
-                <div class="py-10">
-                  <label for="telSac" class="texto-formulario mb-10">Telefone </label><span
-                    class="texto-formulario-informativo"> (Use um número válido de
-                    atendimento.)</span>
-                  <input type="tel" id="telSac" name="telSac" class="form-control" placeholder="Ex.: (11) 90000-0000">
+                <div class="row">
+                  <!-- Telefone -->
+                  <div class="col-md-6">
+                    <div class="py-05">
+                      <label for="telSac" class="texto-formulario mb-10">Telefone </label>
 
+                      <input type="tel" id="telSac" name="telSac" class="form-control"
+                        placeholder="Ex.: (fixo, celular ou 0800)" required>
+                      <div class="invalid-feedback">
+                        Digite um número válido (fixo, celular ou 0800).
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Site oficial -->
+                  <div class="col-md-6">
+                    <div class="py-05">
+                      <label for="siteOficial" class="texto-formulario mb-10">Site oficial</label>
+                      <input type="url" id="siteOficial" name="siteOficial" class="form-control" required
+                        placeholder="https://suaempresa.com.br" autocomplete="url">
+                      <div class="invalid-feedback">
+                        Digite uma URL válida (ex.: https://suaempresa.com.br)
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <!-- Site oficial -->
-                <div class="py-10">
-                  <label for="siteOficial" class="texto-formulario mb-10">Site oficial</label>
-                  <input type="url" id="siteOficial" name="siteOficial" class="form-control" required
-                    placeholder="https://suaempresa.com.br">
-                </div>
+
 
                 <!-- E-mail (SAC) -->
-                <div class="py-10">
+                <div class="py-05">
                   <label for="emailSac" class="texto-formulario mb-10">E-mail </label>
                   <input type="email" id="emailSac" name="emailSac" class="form-control" required
                     placeholder="atendimento@suaempresa.com.br">
+                  <div class="invalid-feedback">
+                    Digite um e-mail válido.
+                  </div>
                 </div>
 
-                <!-- Logos -->
-                <div class="row g-3 py-10">
-                  <div class="col-12">
-                    <label for="logoQuadrada" class="texto-formulario mb-10">Logo
-                      (224×224px)</label><span class="texto-formulario-informativo"> (PNG/JPG/SVG.
-                      Fundo transparente recomendado.)</span>
-                    <input type="file" id="logoQuadrada" name="logoQuadrada" class="form-control"
-                      accept=".png,.jpg,.jpeg,.svg">
 
+
+
+                <!-- Logos -->
+                <div class="row g-3 py-05">
+                  <!-- Logo quadrada -->
+                  <div class="col-md-6 col-12">
+                    <label for="logoQuadrada" class="texto-formulario mb-10">
+                      Logo (224×224px)
+                    </label>
+                    <span class="texto-formulario-informativo">
+                      (PNG/JPG/SVG.)
+                    </span>
+                    <input type="file" id="logoQuadrada" name="logoQuadrada" class="form-control"
+                      accept=".png,.jpg,.jpeg,.svg" required>
+                    <div class="invalid-feedback">
+                      Envie a logo (224×224px).
+                    </div>
                   </div>
-                  <div class="col-12 py-10">
-                    <label for="logoBanner" class="texto-formulario mb-10">Banner
-                      (1440×448px)</label>
+
+                  <!-- Logo banner -->
+                  <div class="col-md-6 col-12">
+                    <label for="logoBanner" class="texto-formulario mb-10">
+                      Banner (1440×448px)
+                    </label>
                     <input type="file" id="logoBanner" name="logoBanner" class="form-control"
-                      accept=".png,.jpg,.jpeg,.svg">
+                      accept=".png,.jpg,.jpeg,.svg" required>
+                    <div class="invalid-feedback">
+                      Envie o banner (1440×448px).
+                    </div>
                   </div>
                 </div>
 
@@ -129,7 +197,7 @@
                   <button id="btnAdicionarLinks" class="btn  botao-flexbox w-800" type="button"
                     data-bs-toggle="collapse" data-bs-target="#linksPrivacidade" aria-expanded="false"
                     aria-controls="linksPrivacidade">
-                    Adicionar links
+                    Adicionar
                   </button>
                 </div>
 
@@ -175,6 +243,7 @@
                     <label for="sim-os-ios">iOS</label>
                   </div>
 
+
                   <div class="controle-tema" aria-label="Tema da tela">
                     <span class="me-2 text-white">Claro</span>
                     <label class="switch mb-0">
@@ -185,6 +254,7 @@
                   </div>
                 </div>
               </div>
+
 
               <!-- Aparelho -->
               <div class="telefone-sim" data-os="android" data-tema="claro">
@@ -327,7 +397,8 @@
                                 d="M4 6h16a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0 8 6 8-6"
                                 fill="none" stroke="currentColor" stroke-width="2" />
                             </svg>
-                            <div><strong class="pv-email">email@suaempresa.com.br</strong><small>E-mail</small></div>
+                            <div><strong class="pv-email">atendimento@suaempresa.com.br</strong><small>E-mail</small>
+                            </div>
                           </li>
                         </ul>
                       </div>
@@ -878,7 +949,7 @@
                           <!-- Hero / Título -->
                           <section class="ios3-hero">
                             <div class="ios3-logo-wrap">
-                              <img class="ios3-logo pv-logo logo"
+                              <img class="ios3-logo ios-appicon pv-logo  logo"
                                 src="https://dummyimage.com/128x128/0b0f14/ffffff.png&text=SC" alt="App icon">
                             </div>
                             <div class="ios3-name-pill"><span class="pv-nome">Short Code</span></div>
@@ -1070,28 +1141,33 @@
               </div>
             </div>
           </div>
-          <!-- Ações -->
+
           <div class="d-flex justify-content-end gap-2 mb-30">
             <a href="etapa-2.html" class="botao-voltar">Voltar</a>
-            <a href="#" class="botao botao-verde botao-borda">Salvar</a>
+            <button id="btnSalvar" type="submit" form="form-agente-rcs" class="botao botao-verde botao-borda">
+              Salvar
+            </button>
           </div>
+
+
         </div>
       </div>
     </section>
 
 
-  </div>
 
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 
-  <script src="/js/particulas.js"></script>
-  <script src="js/script.js"></script>
-  <script src="/js/phone-caixa.js"></script>
-  <script src="/js/carrosel.js"></script>
-  <script src="/js/phone-conversas.js"></script>
-  <script src="/js/phone-ios.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+    <script src="/js/particulas.js"></script>
+    <script src="js/script.js"></script>
+    <script src="/js/phone-caixa.js"></script>
+    <script src="/js/carrosel.js"></script>
+    <script src="/js/phone-conversas.js"></script>
+    <script src="/js/phone-ios.js"></script>
+    <script src="/js/validacoes.js"></script>
 </body>
 
 </html>
